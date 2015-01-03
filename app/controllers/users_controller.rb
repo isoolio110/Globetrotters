@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+
   end
 
   def show
@@ -18,5 +19,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:username, :password, :first_name, :last_name, :avatar)
   end
 end
