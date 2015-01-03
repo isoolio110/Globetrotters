@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'sessions/login'
+
+  get 'sessions/logout'
+
   get 'users/index'
 
   get 'users/show'
