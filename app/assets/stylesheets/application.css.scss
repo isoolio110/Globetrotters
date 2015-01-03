@@ -1,3 +1,157 @@
 // Place all the styles related to the application controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/********** Landing Page ************/
+
+a {
+  text-decoration:none;
+}
+
+a:hover {
+  text-decoration:none;
+}
+
+#headline {
+  font-size: 5.5em; 
+  color: white;
+  position: relative;
+  text-align: center;
+  position: absolute;
+  z-index: 0;
+  top: 210px;
+  width: 100%;
+  /*background-color: red;*/
+}
+
+#subheadline {
+  font-size: 2em;
+  color: white;
+  width: 700px;
+  display: block;
+  margin: 0 auto; 
+  text-align:center;
+  position: absolute;
+  z-index: 0;
+  top: 350px;
+  left:0; 
+  right:0;
+  /*background-color: green;*/
+}
+
+
+.login-btns {
+  width: 70px; 
+  height: 25px;
+  position: relative;
+  top: 10px;
+  margin-right: 10px;
+  /*background-color: blue;*/
+}
+
+
+#get-started-btn {
+  width: 200px;
+  display: block;
+  margin: 0 auto;   
+  position: absolute;
+  z-index: 0;
+  top: 500px;
+  left:0; 
+  right:0;
+  color:white;
+  /*background-color: orange;*/
+}
+
+
+#landing-pg-main-div{
+  height:94%;
+  width: 100%;
+  margin-top: -20px;
+  /*background-color: blue;*/
+}
+
+#landing-pg-imgs{
+  height: 100%;
+  width:100%;
+  position: relative;
+  z-index:-1;
+  overflow: hidden;
+  /*background-color: #DDD;*/
+}
+
+
+#landing-pg-imgs img{
+  width: 100%;
+  position: relative;
+  z-index:-1;
+  overflow: hidden;
+}
+
+.btn-xlarge {
+    padding: 12px 24px;
+    font-size: 22px;
+    line-height: normal;
+    border: 3px solid white;
+    text-align: center;
+}
+
+/* make keyframes that tell the start state and the end state of our object */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+ 
+.fade-in {
+ opacity:0;  /* make things invisible upon start */
+ -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+ -moz-animation:fadeIn ease-in 1;
+ animation:fadeIn ease-in 1;
+ 
+ -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+ -moz-animation-fill-mode:forwards;
+ animation-fill-mode:forwards;
+ 
+ -webkit-animation-duration:1s;
+ -moz-animation-duration:1s;
+ animation-duration:1s;
+}
+ 
+.fade-in.one {
+-webkit-animation-delay: 1s;
+-moz-animation-delay: 1s;
+animation-delay: 1s;
+}
+ 
+.fade-in.two {
+-webkit-animation-delay: 1.6s;
+-moz-animation-delay:1.6s;
+animation-delay: 1.6s;
+}
+ 
+.fade-in.three {
+-webkit-animation-delay: 2.2s;
+-moz-animation-delay: 2.2s;
+animation-delay: 2.2s;
+}
+
+/********** Create An Account Page ************/
+
+.new_user {
+  width: 500px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+
+#create-new-user-header {
+  text-align: center;
+}
+
+/********** Login Page ************/
+
+#login-form {
+  position:relative;
+  margin-left: 20px;
+}
+
