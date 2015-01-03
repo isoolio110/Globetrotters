@@ -1,0 +1,2 @@
+module MostpopulardestinationsHelper
+end
