@@ -7,3 +7,11 @@ var userLocations = new UserLocationList();
 topDestinations.fetch();
 users.fetch();
 userLocations.fetch();
+
+window.onload=function(){
+    $('#landing-pg-imgs').cycle({
+        fx: 'fade',
+        timeout: 2500, 
+        speed: 2500
+    });
+};
