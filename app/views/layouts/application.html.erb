@@ -9,7 +9,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-THE GLOBETROTTERS
+  <nav>
+    <div class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">THE GLOBETROTTERS</a>
+        </div>
+        <div>
+          <ul class="nav navbar-nav navbar-right">
+            <%= render partial: current_user ? "/shared/user_nav" : "/shared/non_user_nav" %>
+          </ul>
+      </div>
+     </div>
+    </div>
+   </nav> 
 <%= yield %>
 
 </body>
