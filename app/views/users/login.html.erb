@@ -1,0 +1,12 @@
+<div id="login-form">
+
+  <h3>Log In</h3>
+
+  <form action="/sessions" method="post">
+    <%= token_tag %>
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="submit" value="Log In">
+  </form>
+
+</div>
