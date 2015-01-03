@@ -2,7 +2,7 @@ console.log("loaded UsersList.js - top");
 
 var UsersList = Backbone.Collection.extend({
   url: '/users',
-  model: User
+  model: User,
 
   customFilter: function(filter) {
   var results = this.where(filter);
