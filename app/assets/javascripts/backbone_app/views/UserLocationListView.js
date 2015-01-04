@@ -16,10 +16,15 @@ var UserLocationListView = Backbone.View.extend({
 
   // render means to populate the template with information from this collection
   render: function(){
-    $("#landing-pg-main-div").hide();        
+    $("#landing-pg-main-div").hide(); 
+    $('#profile-pg-profile-pic-container').hide();
+    $('#profile-pg-travel-agenda-container').hide();
+    $('#profile-pg-stories-container').hide();
+    $('#profile-pg-other-users-container').hide();  
+    $('#profile-pg-profile-link-container').hide();           
     $('#map-canvas').show();
     $('#bar-chart').show();
-    $('#user-locations-container').show();    
+    $('#user-locations-container').show();     
     // the html data to be rendered is the data from the collection into the underscore template
     var renderedHTML = this.template({
       userlocations: this.collection});
