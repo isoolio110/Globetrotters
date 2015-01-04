@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # has_many :user_goals
+  has_many :user_locations
+  has_many :stories
+
   # Validations
   has_secure_password
   validates  :first_name, :last_name, :presence => :true
