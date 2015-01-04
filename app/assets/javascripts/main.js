@@ -23,16 +23,33 @@ var router = new AppRouter({
 
 
 window.onload=function(){
-    $('#landing-pg-imgs').cycle({
-        fx: 'fade',
-        timeout: 2500, 
-        speed: 2500
-    });
-    
-    $('#map-canvas').hide();
-    $('#bar-chart').hide();
-    $('#user-locations-container').hide();        
+  $('#landing-pg-imgs').cycle({
+    fx: 'fade',
+    timeout: 2500, 
+    speed: 2500
+  });
 
-    Backbone.history.start()
+  $('#map-canvas').hide();
+  $('#bar-chart').hide();
+  $('#user-locations-container').hide();        
+
+  Backbone.history.start()
+
+  $.fn.serializeObject = function()
+  {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+      if (o[this.name]) {
+        if (!o[this.name].push) {
+          o[this.name] = [o[this.name]];
+             }
+          o[this.name].push(this.value || '');
+         } else {
+          o[this.name] = this.value || '';
+         }
+     });
+     return o;
+  };
 
 };
