@@ -117,11 +117,24 @@ var AppRouter = Backbone.Router.extend({
     this.setOtherUsersView(otherUsersView);   
   },
 
+  setUsersView: function(newView) {
+    this.view = newView;
+    $('#profile-pg-profile-pic-container').html(this.view.render().$el);
+  },
+
+  users: function(id){
+    console.log('loaded AppRouter: users')
+    var user = this.usersCollection.customFilter({"id": id})
+    var UsersView = new UsersListView({collection: user});
+    this.setUsersView(UsersView);
+  },
+
   profile: function(id){
     this.travelAgenda(parseInt(id));
     this.profileLink();
     this.stories(parseInt(id));    
     this.otherUsers(parseInt(id));
+    this.users(parseInt(id));  
   }
 
 });
