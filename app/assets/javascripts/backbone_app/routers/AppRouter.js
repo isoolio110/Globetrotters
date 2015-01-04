@@ -85,9 +85,30 @@ var AppRouter = Backbone.Router.extend({
     this.setProfileLinkView(profileLinkView);
   },  
 
+  setStoriesView: function(newView) {
+    this.view = newView;
+    $('#profile-pg-stories-container').html(this.view.render().$el);
+  },
+
+  stories: function(id){
+    console.log('loaded AppRouter: stories')
+    var userSpecificStories = this.usersStoriesCollection.customFilter({"user_id": id});
+    var currentUser  = this.usersCollection.findWhere({current_user: 1});
+    var currentUserID = currentUser.attributes.id
+    if (currentUserID == id) {
+      templateNumber = 1    
+    } else {
+      templateNumber = 2
+    }
+    var storyView = new StoryListView({collection: userSpecificStories,template_number: templateNumber
+    });
+    this.setStoriesView(storyView);
+  },
+
   profile: function(id){
     this.travelAgenda(parseInt(id));
     this.profileLink();
+    this.stories(parseInt(id));    
   }
 
 });
