@@ -164,3 +164,68 @@ animation-delay: 2.2s;
   margin-left: 34%;
 }
 
+#user-locations-container {
+  background-color:rgba(118,118,118,0.5);
+  width: 30%;
+  min-height: 720px;  
+  position:relative;
+  padding: 20px;  
+  z-index: 0;
+  margin-top: -960px;
+  left:25px;
+}
+
+#userlocations-list {
+  height: 100%;
+  width: 100%;
+}
+
+#add-destinations {
+  height: 100%;
+  width: 100%;
+}
+
+#add-destinations-header {
+  font-size: 2.5em;
+  color: white;
+} 
+
+.add-destinations-txt {
+  font-size: 1.5em;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+  
+#input-destination {
+  height:42px;
+  width: 150px;
+  padding: 10px;
+  font-size: 1.25em;
+}
+
+#userlocations-list {
+  margin-bottom: 75px;
+}
+
+#next-btn {
+    border: 3px solid white;
+    padding: 10px 20px 10px 20px;
+}
+
+#bar-chart{
+  margin-left: 34%;
+}
+
+.destination {
+  background-color: gray;
+  height: 2.5em;
+  padding: 0.5em;
+  margin: 0.5em;
+  width: 0px;
+  font-size: 1.2em;
+  color: white;
+  white-space: nowrap;
+  z-index: 1; 
+}
+
