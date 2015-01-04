@@ -14,4 +14,11 @@ window.onload=function(){
         timeout: 2500, 
         speed: 2500
     });
+    
+    $('#map-canvas').hide();
+    $('#bar-chart').hide();
+    $('#user-locations-container').hide();        
+
+    Backbone.history.start()
+
 };
