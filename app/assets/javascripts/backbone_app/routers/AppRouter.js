@@ -69,8 +69,25 @@ var AppRouter = Backbone.Router.extend({
     this.setTravelAgendaView(agendaView);
   },  
 
+  // profile link view
+  setProfileLinkView: function(newView) {
+    this.view = newView;
+    $('#profile-pg-profile-link-container').html(this.view.render().$el);
+  },
+
+  profileLink: function() {
+    console.log('loaded AppRouter: profileLink')  
+    var currentUser  = this.usersCollection.findWhere({current_user: 1});
+    var currentUserID = currentUser.attributes.id;
+    var currentUserUsername = currentUser.attributes.username;
+    var currentUserImageURL = currentUser.attributes.image_url;
+    var profileLinkView = new ProfileLinkView({currentUserID: currentUserID,currentUserUsername: currentUserUsername, currentUserImageURL: currentUserImageURL});
+    this.setProfileLinkView(profileLinkView);
+  },  
+
   profile: function(id){
     this.travelAgenda(parseInt(id));
+    this.profileLink();
   }
 
 });
