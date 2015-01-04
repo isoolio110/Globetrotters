@@ -8,8 +8,10 @@ Rails.application.routes.draw do
   post "/sessions" => "sessions#login"
   delete "/sessions" => "sessions#logout", as: "logout"
 
+  resources :mostpopulardestinations
+  resources :otherusers
+  resources :stories
   resources :users
   resources :userlocations
-  resources :mostpopulardestinations
 
 end
