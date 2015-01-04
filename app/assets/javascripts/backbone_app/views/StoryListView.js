@@ -13,7 +13,6 @@ var StoryListView = Backbone.View.extend({
   },
 
   render: function(){
-    $("#landing-pg-main-div").hide();
     var renderedHTML = this.template({
       stories: this.collection});
     this.$el.html(renderedHTML);
