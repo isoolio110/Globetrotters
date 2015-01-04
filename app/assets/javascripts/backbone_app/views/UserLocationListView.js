@@ -36,7 +36,8 @@ var UserLocationListView = Backbone.View.extend({
 
   // backbone way of writing events
   events: {
-    'submit form': 'onSubmit'
+    'submit form': 'onSubmit',
+    'click #remove': 'onRemove'    
   },
 
   // the onSubmit function states that when the event occurs: 
@@ -49,7 +50,17 @@ var UserLocationListView = Backbone.View.extend({
     this.collection.create({location: location
       // ,planned_date: planned_date
     });
+    },
+
+  onRemove: function(evt) {
+    evt.preventDefault();
+    if (window.confirm('Are you sure you want to delete this trip?')) {
+    var model = this.collection.get(id);
+    model.destroy();
+    }
+    return this;
   }
+
 });
 
 console.log('loaded UserLocationListView.js - bottom')

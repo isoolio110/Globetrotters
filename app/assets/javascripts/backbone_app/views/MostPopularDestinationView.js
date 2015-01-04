@@ -16,7 +16,7 @@ var MostPopularDestinationView = Backbone.View.extend({
           }
   return topdest;
   },
-  
+
   projectData: function(data){
     var barchart = d3.select('#bar-chart')
       .selectAll('div')
@@ -24,7 +24,11 @@ var MostPopularDestinationView = Backbone.View.extend({
     var destination = barchart.enter()
       .append('div')
       .attr("class", "destination")
-      .text(function(d){return d.destination + ": " + d.num_of_visitors + " visitors" ;});
+      .text(function(d){
+        // round with 3 digits
+        var formatNumber = d3.format(".3s");  
+        return d.destination + ": " + formatNumber(d.num_of_visitors) + " visitors" ;
+      });
     barchart = d3.select('#bar-chart')
           .selectAll('div')
           .transition()
