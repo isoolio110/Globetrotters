@@ -41,10 +41,36 @@ var AppRouter = Backbone.Router.extend({
   userLocation: function(id){
     this.userLocationsList(parseInt(id));
     this.showBarChart();
+  },
+
+  // profile page
+
+  // travel agenda view
+  setTravelAgendaView: function(newView) {
+    if (this.view) {
+      this.view.remove();
+    }
+    this.view = newView;
+    $('#profile-pg-travel-agenda-container').html(this.view.render().$el);
+  },
+
+  travelAgenda: function(id) { 
+    console.log('loaded AppRouter: travelAgenda')
+    var userSpecificLocations = this.usersLocationCollection.customFilter({"user_id": id});
+    var currentUser  = this.usersCollection.findWhere({current_user: 1});
+    var currentUserID = currentUser.attributes.id
+    if (currentUserID == id) {
+      templateNumber = 1    
+    } else {
+      templateNumber = 2
+    }   
+    var agendaView = new TravelAgendaListView({collection: userSpecificLocations, user_id: id, template_number: templateNumber});
+    this.setTravelAgendaView(agendaView);
+  },  
+
+  profile: function(id){
+    this.travelAgenda(parseInt(id));
   }
-
-  
-
 
 });
 
