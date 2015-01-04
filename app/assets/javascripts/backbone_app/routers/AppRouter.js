@@ -153,6 +153,23 @@ var AppRouter = Backbone.Router.extend({
     this.setStoryView(storyDetailView);
   }
 
+  // agenda detail page
+  setAgendaDetailView: function(newView) {
+    if (this.view) {
+      this.view.remove();
+    }
+    this.view = newView;
+    this.view.render().$el.appendTo('#agenda-detail-container');
+  },
+
+  agendaDetail: function(id) {
+    console.log('loaded AppRouter: agendaDetail')
+    var location = this.usersLocationCollection.get(parseInt(id))
+    var agendaDetailView = new AgendaDetailView({model: location});
+    this.setAgendaDetailView(agendaDetailView);
+  }
+
+
 });
 
 console.log('loaded AppRouter.js - bottom')
