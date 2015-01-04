@@ -4,7 +4,6 @@
   <title>Globetrotters</title>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-
   <!-- Render on location list page: form  -->
   <script type="template" id="user-location-list-template">
       <%= render 'welcome/user_locations_list_template' %>
@@ -13,7 +12,7 @@
   <script type="template" id="most-popular-template">
       <%= render 'welcome/most_popular_destination_template' %>
   </script>
-  <!-- google map -->
+  <!--Render on location list page: google map -->
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
   <script>
     var map;
@@ -27,7 +26,7 @@
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
-  <!-- google place autocomplete -->
+  <!-- Add on location list page: google place autocomplete -->
   <script>
   var placeSearch, autocomplete;
   function initialize() {
@@ -51,6 +50,14 @@
     }
   }
   </script>
+  <!-- Render on profile page: travel agenda  --> 
+  <script type="template" id="travel-agenda-list-1-template">
+    <%= render 'welcome/travel_agenda_1_template' %>
+  </script>
+  <script type="template" id="travel-agenda-list-2-template">
+      <%= render 'welcome/travel_agenda_2_template' %>
+  </script>
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>

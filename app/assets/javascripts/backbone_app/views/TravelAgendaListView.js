@@ -18,7 +18,7 @@ var TravelAgendaListView = Backbone.View.extend({
     $('#map-canvas').hide();
     $('#bar-chart').hide();
     $('#user-locations-container').hide();
-      $('#profile-pg-profile-link-container').show();   
+    $('#profile-pg-profile-link-container').show();   
     $('#profile-pg-profile-pic-container').show();
     $('#profile-pg-travel-agenda-container').show();
     $('#profile-pg-stories-container').show();
