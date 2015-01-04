@@ -9,6 +9,8 @@ var AppRouter = Backbone.Router.extend({
     this.usersCollection = options.usersCollection;
     this.usersLocationCollection = options.usersLocationCollection;
     this.topDestinationsCollection = options.topDestinationsCollection;
+    this.usersStoriesCollection = options.usersStoriesCollection;
+    this.otherUsersCollection = options.otherUsersCollection;
   },
 
   // userlocations page
