@@ -1,0 +1,8 @@
+<p class="profile-section-header">People With Stories 
+About the Places That You Want To Visit</p>
+  <%% otherUsers.each(function(user){ %>
+    <div><a href="#profiles/<%%= user.get('other_user_id')%>"> <%%= user.get('username') %></a> 
+      <img src=<%%= user.get('image_url') %> class="other-user-img">
+    </div>
+  <%% }) %>
+
