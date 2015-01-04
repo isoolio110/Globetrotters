@@ -229,3 +229,16 @@ animation-delay: 2.2s;
   z-index: 1; 
 }
 
+/********** Profile Page ************/
+
+#profile-background-img {
+  position:relative;
+  width: 100%;
+  z-index: -1;
+}
+
+#profile-background-img img {
+  height: 450px;
+  width: 100%;
+  margin-top: -20px;
+}
