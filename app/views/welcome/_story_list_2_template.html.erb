@@ -1,0 +1,17 @@
+<div id="profile-stories-div">
+  <p class="profile-section-header">Your Stories</p>
+  
+  <div id="profile-stories-list">
+    <%% stories.each(function(story){ %>
+      <div id="story-title">
+        <%%= story.get('title') %>
+      </div>
+      <div id="story-location">
+        where: <%%= story.get('location') %>
+      </div>
+      <div id="story-description">
+        <%%= story.get('description') %>
+      </div>      
+    <%% }) %>
+  </div>
+</div>
