@@ -14,7 +14,7 @@
       <%= render 'welcome/most_popular_destination_template' %>
   </script>
   <!-- google map -->
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> 
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
   <script>
     var map;
     function initialize() {
@@ -26,6 +26,30 @@
           mapOptions);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+  <!-- google place autocomplete -->
+  <script>
+  var placeSearch, autocomplete;
+  function initialize() {
+    // Create the autocomplete object, restricting the search
+    // to geographical location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+        { types: ['geocode'] });
+  }
+  function geolocate() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = new google.maps.LatLng(
+            position.coords.latitude, position.coords.longitude);
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
   </script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
