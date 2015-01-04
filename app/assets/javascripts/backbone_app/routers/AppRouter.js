@@ -41,8 +41,6 @@ var AppRouter = Backbone.Router.extend({
     this.showBarChart();
   }
 
-
-
 });
 
 console.log('loaded AppRouter.js - bottom')
