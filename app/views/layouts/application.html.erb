@@ -69,13 +69,18 @@
     <%= render 'welcome/story_list_2_template' %>
   </script>
 <!-- Render on profile page: other users  -->
-<script type="template" id="other-users-list-template">
-    <%= render 'welcome/other_users_template' %>
-</script>
+  <script type="template" id="other-users-list-template">
+      <%= render 'welcome/other_users_template' %>
+  </script>
 <!-- Render on profile page: user profile pic  -->
-<script type="template" id="users-list-template">
-    <%= render 'welcome/profile_pic_template' %>
-</script>
+  <script type="template" id="users-list-template">
+      <%= render 'welcome/profile_pic_template' %>
+  </script>
+<!-- Render on story page: story edit form  -->
+  <script type="template" id="story-detail-template">
+      <%= render 'welcome/story_detail_template' %>
+  </script> 
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
