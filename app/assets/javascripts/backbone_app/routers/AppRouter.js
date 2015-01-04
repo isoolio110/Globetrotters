@@ -135,6 +135,22 @@ var AppRouter = Backbone.Router.extend({
     this.stories(parseInt(id));    
     this.otherUsers(parseInt(id));
     this.users(parseInt(id));  
+  },
+
+  // story detail page
+  setStoryView: function(newView) {
+    if (this.view) {
+      this.view.remove();
+    }
+    this.view = newView;
+    this.view.render().$el.appendTo('#story-detail-container');
+  },
+
+  storyDetail: function(id) {
+    console.log('loaded AppRouter: storyDetail')
+    var story = this.usersStoriesCollection.get(parseInt(id))
+    var storyDetailView = new StoryDetailView({model: story});
+    this.setStoryView(storyDetailView);
   }
 
 });
