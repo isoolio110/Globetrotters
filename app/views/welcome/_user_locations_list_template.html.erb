@@ -1,0 +1,22 @@
+<div id="add-destinations" >
+  <div>
+    <h3 id="add-destinations-header">Step 1: Add Destinations </h3>
+    <p class="add-destinations-txt">This should be your wish list of places to go. Explore the map to find interesting places.</p>
+  </div>
+
+  <form class="create">
+    <input id="autocomplete" name="location" placeholder="Enter a country" onFocus="geolocate()" type="text"></input>
+  </form>
+
+  <ul id="userlocations-list" class="userlocations-list">
+    <%% userlocations.each(function(location){ %>
+      <li class="add-destinations-txt"><%%= location.get('location') %>  
+        <%%= location.get('planned_date') %>
+      </li>
+    <%% }) %>
+  </ul>
+
+  <% if current_user %>
+    <a href="#profiles/<%= current_user.id %>" id="next-btn">Next</a>
+  <% end %>
+</div>
