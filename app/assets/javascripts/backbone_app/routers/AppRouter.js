@@ -151,7 +151,7 @@ var AppRouter = Backbone.Router.extend({
     var story = this.usersStoriesCollection.get(parseInt(id))
     var storyDetailView = new StoryDetailView({model: story});
     this.setStoryView(storyDetailView);
-  }
+  },
 
   // agenda detail page
   setAgendaDetailView: function(newView) {
