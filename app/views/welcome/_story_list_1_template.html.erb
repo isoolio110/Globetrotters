@@ -1,0 +1,30 @@
+<div id="profile-stories-div">
+  <p class="profile-section-header">Your Stories</p>
+
+  <div id="story-form">
+    <form class="create">
+      <input type="text" name="Title" placeholder="Title of Your Trip" id="story-form-title">
+      <input type="text" name="Location" placeholder="Location" id="story-form-location">
+      <textarea name="Description" id="story-form-description">Please provide a detailed description of your trip</textarea>
+      <input type="submit" name="Submit">
+    </form>
+  </div>
+
+  <div id="profile-stories-list">
+    <%% stories.each(function(story){ %>
+    <div class="story-list-item">
+      <div id="story-title">
+        <a href="#story/<%%= story.get('id') %>"><%%= story.get('title') %></a>
+      </div>
+      <div id="story-location">
+        where: <%%= story.get('location') %>
+      </div>
+      <div id="story-description">
+        <%%= story.get('description') %>
+      </div>
+    </div>  
+    <%% }) %>
+  </div>
+</div>
+
+
