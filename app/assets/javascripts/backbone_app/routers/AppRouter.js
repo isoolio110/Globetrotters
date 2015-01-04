@@ -3,7 +3,9 @@ console.log('loaded AppRouter.js - top')
 var AppRouter = Backbone.Router.extend({
   routes: {
       'userlocations/:id': 'userLocation',
-      'profiles/:id' : 'profile'
+      'profiles/:id' : 'profile',
+      'story/:id' : 'storyDetail',
+      'agenda/:id' : 'agendaDetail'      
     },
 
   initialize: function(options) {
