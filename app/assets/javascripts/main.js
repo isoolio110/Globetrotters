@@ -12,6 +12,16 @@ topDestinations.fetch();
 users.fetch();
 userLocations.fetch();
 
+// instantiate the router and pass it the collections 
+var router = new AppRouter({
+    usersLocationCollection: userLocations,
+    usersStoriesCollection: stories,
+    topDestinationsCollection: topDestinations,
+    otherUsersCollection: otherUsers,
+    usersCollection: users
+});
+
+
 window.onload=function(){
     $('#landing-pg-imgs').cycle({
         fx: 'fade',
