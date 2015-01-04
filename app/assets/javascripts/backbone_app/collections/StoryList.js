@@ -2,7 +2,12 @@ console.log("loaded StoryList.js - top");
 
 var StoryList = Backbone.Collection.extend({
   url: '/stories',
-  model: Story
+  model: Story,
+
+  customFilter: function(filter) {
+    var results = this.where(filter);
+    return new StoryList(results);
+  }
 
 });
 
