@@ -5,6 +5,14 @@
 
 /********** Landing Page ************/
 
+.navbar {
+    position: fixed !important;
+    top: 0px;
+    width: 100%;
+    z-index: 3;
+    background: rgba(2, 26, 39, 0.7);
+}
+
 a {
   text-decoration:none;
 }
@@ -168,7 +176,7 @@ animation-delay: 2.2s;
   background-color:rgba(118,118,118,0.5);
   width: 30%;
   min-height: 720px;  
-  position:relative;
+  position:fixed;
   padding: 20px;  
   z-index: 0;
   margin-top: -960px;
