@@ -1,0 +1,14 @@
+<div id="profile-background-img">
+    <img src="assets/profile_backgrounds/img3.jpg"> 
+</div>
+
+<div id="profile-travel-agenda-div">
+  <p class="profile-section-header">Your Travel Agenda</p>
+    <%% userlocations.each(function(location){ %>
+      <div class="travel-agenda-item"> 
+        <%%= location.get('location') %>
+        <p>Planned date: <%%= location.get('planned_date') %></p>
+        <p>Visited date: <%%= location.get('visited_date') %></p>
+      </div>
+    <%% }) %>
+</div>
