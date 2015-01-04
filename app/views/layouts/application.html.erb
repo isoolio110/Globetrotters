@@ -5,9 +5,13 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
 
-  <!-- Render on location selection page: list of locations  -->
+  <!-- Render on location list page: form  -->
   <script type="template" id="user-location-list-template">
       <%= render 'welcome/user_locations_list_template' %>
+  </script>
+ <!-- Render on location list page: bar chart  -->
+  <script type="template" id="most-popular-template">
+      <%= render 'welcome/most_popular_destination_template' %>
   </script>
   <!-- google map -->
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> 
