@@ -31,8 +31,10 @@ window.onload=function(){
 
   $('#map-canvas').hide();
   $('#bar-chart').hide();
-  $('#user-locations-container').hide();        
+  $('#user-locations-container').hide();  
 
+  $('html,body').scrollTop(0);
+  
   Backbone.history.start()
 
   $.fn.serializeObject = function()
