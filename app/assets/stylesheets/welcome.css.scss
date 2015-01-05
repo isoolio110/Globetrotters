@@ -417,12 +417,17 @@ animation-delay: 2.2s;
 
 }
 
+#other-users-icons-list {
+  margin-top: 30px;
+}
+
 .other-user-main-div {
   border-radius: 50%;
   width: 70px;
   height: 70px;
   float:left;
   position:relative;
+  margin: 2px;
 }
 
 .other-user-shaded-div{
