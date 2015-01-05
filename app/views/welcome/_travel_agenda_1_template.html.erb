@@ -3,13 +3,13 @@
 </div>
 
 <div id="profile-travel-agenda-div">
-  <p class="profile-section-header">Your Travel Agenda</p>
+  <p class="profile-section-header" id="travel-agenda-header"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Your Travel Agenda</p>
   <br>
-  <a href="#userlocations/<%%= user_id %>">Add Destinations</a>
+  <a href="#userlocations/<%%= user_id %>" id="add-destination-link">Add Destinations</a>
   <br>
     <%% userlocations.each(function(location){ %>
       <div class="travel-agenda-item"> 
-        <a href="#agenda/<%%= location.get('id') %>"><%%= location.get('location') %></a><br>
+        <a href="#agenda/<%%= location.get('id') %>" class="travel-agenda-item-title"><%%= location.get('location') %></a><br>
         <p>Planned date: <%%= location.get('planned_date') %></p>
         <p>Visited date: <%%= location.get('visited_date') %></p>
       </div>

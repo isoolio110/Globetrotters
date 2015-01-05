@@ -271,10 +271,21 @@ animation-delay: 2.2s;
 
 .profile-pic {
   position: absolute;
-  width: 600px;
+  width: 280px;
   top: 315px;
   left: 75px;
   z-index: 2;
+}
+
+#profile-pic-div{
+  float: left;
+}
+
+#profile-pic-username{
+  float: right;
+  font-size: 2em;
+  color: white;
+  margin-top: 100px;
 }
 
 #profile-pic-img {
@@ -294,15 +305,23 @@ animation-delay: 2.2s;
 }
 
 #profile-travel-agenda-div {
-  background-color: gray;
+  background-color: #8B9199;
   width: 25%;
   position: absolute;
   margin-top: 2.8%;
   margin-right: 2.5%;
   padding: 30px;
   left: 2.5%;
-  min-height: 800px;  
-}   
+  min-height: 800px;
+}
+
+#travel-agenda-header{
+  margin-left: 10px;
+}
+
+#add-destination-link{
+  margin-left:10px;
+}
 
 .travel-agenda-item {
   background-color: white;
@@ -311,13 +330,13 @@ animation-delay: 2.2s;
   margin: 10px;
 }
 
-.travel-agenda-item a {
-  color: #2E2E2E;
+.travel-agenda-item-title {
+  color: #2496CC;
   font-size: 1.5em;
 }
 
 #profile-stories-div {
-  background-color: gray;
+  background-color: #8B9199;
   width: 40%;
   position:absolute;
   margin-top: 40px;
@@ -374,14 +393,14 @@ animation-delay: 2.2s;
 }
 
 #profile-pg-other-users-container {
-  background-color: gray;
+  background-color: #8B9199;
   position: relative;
   margin-top: 40px;
   margin-left: 72%;
   width: 26%;
   min-height: 800px;
   z-index: 2;
-  padding: 30px;
+  padding: 20px;
 
 }
 

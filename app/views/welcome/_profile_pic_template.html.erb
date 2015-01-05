@@ -1,8 +1,8 @@
 <%% users.each(function(user){ %>
-  <div>
+  <div id="profile-pic-div">
     <img src=<%%= user.get('image_url') %>>
   </div>
-  <div>
+  <div id="profile-pic-username">
     <%%= user.get('username') %> 
   </div>
 <%% }) %>
