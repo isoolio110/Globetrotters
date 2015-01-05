@@ -271,7 +271,7 @@ animation-delay: 2.2s;
 
 .profile-pic {
   position: absolute;
-  width: 280px;
+  width: 320px;
   top: 315px;
   left: 75px;
   z-index: 2;
@@ -413,14 +413,50 @@ animation-delay: 2.2s;
   width: 26%;
   min-height: 800px;
   z-index: 2;
-  padding: 20px;
+  padding: 30px;
 
+}
+
+.other-user-main-div {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  float:left;
+  position:relative;
+}
+
+.other-user-shaded-div{
+  border-radius: 50%;
+  width: 70px;
+  height: 70px; 
+  background-color: black;
+  opacity: 0.5;
+  position:relative;  
+  z-index: 2;
+  float:left;
+  margin-top:-70px;
+}
+
+.other-user-username-div{
+  border-radius: 50%;
+  width: 70px;
+  height: 70px; 
+  color: white;
+  float:left;  
+  margin-top:-70px;
+  text-align:center;
+  line-height:70px;
+  position:relative;  
+  z-index: 3;
 }
 
 .other-user-img {
   border-radius: 50%;
-  width: 100px;
-  height: 100px; 
+  width: 70px;
+  height: 70px; 
+  position:relative;  
+  z-index: -1;
+  float:left;
 }
 
 #story-detail-container {
