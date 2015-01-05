@@ -153,6 +153,7 @@ animation-delay: 2.2s;
 }
 
 #create-new-user-header {
+  margin-top: 100px;
   text-align: center;
 }
 
@@ -344,7 +345,6 @@ animation-delay: 2.2s;
   color:#2E2E2E;
 }
 
-
 #story-title {
   font-size: 2.5em; 
 }
@@ -374,26 +374,15 @@ animation-delay: 2.2s;
 }
 
 #profile-pg-other-users-container {
+  background-color: gray;
   position: relative;
-  width: 26%;
-  top: 5%;
-  margin-left: 72%;
-  z-index: 2;
-}
-
-#other-people-div {
-  background-color: gray;
-  width: 25%;
-  position:absolute;
-  margin-top: 80px;
-  right: 2.5%;    
-  padding: 30px;
-  min-height: 800px;
-} 
-
-.other-users-list{
-  background-color: gray;
   margin-top: 40px;
+  margin-left: 72%;
+  width: 26%;
+  min-height: 800px;
+  z-index: 2;
+  padding: 30px;
+
 }
 
 .other-user-img {
@@ -401,7 +390,6 @@ animation-delay: 2.2s;
   width: 100px;
   height: 100px; 
 }
-
 
 #story-detail-container {
   margin-top: 60px;
