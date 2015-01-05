@@ -1,6 +1,5 @@
 <div id="profile-stories-div">
-  <p class="profile-section-header">Your Stories</p>
-
+    <p class="profile-section-header" id="stories-header"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Your Stories</p>
   <div id="story-form">
     <form class="create">
       <input type="text" name="Title" placeholder="Title of Your Trip" id="story-form-title">
@@ -13,8 +12,8 @@
   <div id="profile-stories-list">
     <%% stories.each(function(story){ %>
     <div class="story-list-item">
-      <div id="story-title">
-        <a href="#story/<%%= story.get('id') %>"><%%= story.get('title') %></a>
+      <div>
+        <a href="#story/<%%= story.get('id') %>" id="story-title"><%%= story.get('title') %></a>
       </div>
       <div id="story-location">
         where: <%%= story.get('location') %>

@@ -3,10 +3,10 @@
 </div>
 
 <div id="profile-travel-agenda-div">
-  <p class="profile-section-header">Your Travel Agenda</p>
+  <p class="profile-section-header" id="travel-agenda-header"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Your Travel Agenda</p>
     <%% userlocations.each(function(location){ %>
       <div class="travel-agenda-item"> 
-        <%%= location.get('location') %>
+        <p class="travel-agenda-item-title"><%%= location.get('location') %></p>
         <p>Planned date: <%%= location.get('planned_date') %></p>
         <p>Visited date: <%%= location.get('visited_date') %></p>
       </div>
