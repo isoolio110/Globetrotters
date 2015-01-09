@@ -1,5 +1,3 @@
-console.log('loaded TravelAgendaListView.js - top')
-
 var TravelAgendaListView = Backbone.View.extend({
   tagName: 'div',
   className: 'travel-agenda-list',
@@ -31,5 +29,3 @@ var TravelAgendaListView = Backbone.View.extend({
   }
 
 });
-
-console.log('loaded TravelAgendaListView.js - bottom')

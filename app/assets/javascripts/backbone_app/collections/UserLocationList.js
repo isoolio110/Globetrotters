@@ -1,5 +1,3 @@
-console.log("loaded UserLocationList.js - top");
-
 var UserLocationList = Backbone.Collection.extend({
   url: '/userlocations',
   model: UserLocation,
@@ -10,5 +8,3 @@ var UserLocationList = Backbone.Collection.extend({
   }
 
 });
-
-console.log("loaded UserLocationList.js - bottom");

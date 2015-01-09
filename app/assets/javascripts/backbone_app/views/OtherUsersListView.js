@@ -1,5 +1,3 @@
-console.log('loaded OtherUsersListView.js - top')
-
 var OtherUsersListView = Backbone.View.extend({
   tagName: 'div',
   className: 'other-users-list',
@@ -17,5 +15,3 @@ var OtherUsersListView = Backbone.View.extend({
   }
   
 });
-
-console.log('loaded OtherUsersListView.js - bottom')

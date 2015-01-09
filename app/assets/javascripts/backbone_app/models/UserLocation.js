@@ -1,5 +1,3 @@
-console.log("loaded UserLocation.js - top");
-
 var UserLocation = Backbone.Model.extend({
   defaults: {
     user_id: '',
@@ -8,5 +6,3 @@ var UserLocation = Backbone.Model.extend({
     visited_date:''
   }
 });
-
-console.log("loaded UserLocation.js - bottom");

@@ -1,5 +1,3 @@
-console.log('loaded ProfileLinkView.js - top')
-
 var ProfileLinkView = Backbone.View.extend({
   tagName: 'div',
   className: 'profile-link',
@@ -20,5 +18,3 @@ var ProfileLinkView = Backbone.View.extend({
   }
 
 });
-
-console.log('loaded ProfileLinkView.js - bottom')

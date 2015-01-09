@@ -1,5 +1,3 @@
-console.log("loaded OtherUser.js - top");
-
 var OtherUser = Backbone.Model.extend({
   defaults: {
     user_id: '',
@@ -8,5 +6,3 @@ var OtherUser = Backbone.Model.extend({
     image_url: ''
   }
 });
-
-console.log("loaded OtherUser.js - bottom");

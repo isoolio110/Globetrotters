@@ -1,5 +1,3 @@
-console.log('loaded UserLocationListView.js - top')
-
 var UserLocationListView = Backbone.View.extend({
   // creates a div
   tagName: 'div',
@@ -62,5 +60,3 @@ var UserLocationListView = Backbone.View.extend({
   }
 
 });
-
-console.log('loaded UserLocationListView.js - bottom')

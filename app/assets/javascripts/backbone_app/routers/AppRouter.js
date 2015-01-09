@@ -1,5 +1,3 @@
-console.log('loaded AppRouter.js - top')
-
 var AppRouter = Backbone.Router.extend({
   routes: {
       'userlocations/:id': 'userLocation',
@@ -173,5 +171,3 @@ var AppRouter = Backbone.Router.extend({
 
 
 });
-
-console.log('loaded AppRouter.js - bottom')

@@ -1,5 +1,3 @@
-console.log('loaded StoryDetailListView.js - top')
-
 var StoryDetailView = Backbone.View.extend({
   tagName: 'div',
   className: 'story-detail',
@@ -53,5 +51,3 @@ var StoryDetailView = Backbone.View.extend({
   }
 
 });
-
-console.log('loaded StoryDetailListView.js - bottom')

@@ -1,5 +1,3 @@
-console.log("loaded StoryList.js - top");
-
 var StoryList = Backbone.Collection.extend({
   url: '/stories',
   model: Story,
@@ -10,5 +8,3 @@ var StoryList = Backbone.Collection.extend({
   }
 
 });
-
-console.log("loaded StoryList.js - bottom");

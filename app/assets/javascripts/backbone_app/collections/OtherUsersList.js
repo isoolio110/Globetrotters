@@ -1,5 +1,3 @@
-console.log("loaded OtherUsersList.js - top");
-
 var OtherUsersList = Backbone.Collection.extend({
   url: '/otherusers',
   model: OtherUser,
@@ -10,5 +8,3 @@ var OtherUsersList = Backbone.Collection.extend({
   }
 
 });
-
-console.log("loaded OtherUsersList.js - bottom");

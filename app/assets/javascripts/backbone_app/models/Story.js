@@ -1,5 +1,3 @@
-console.log("loaded Story.js - top");
-
 var Story = Backbone.Model.extend({
   defaults: {
     user_id: '',
@@ -9,5 +7,3 @@ var Story = Backbone.Model.extend({
     packlist: ''
   }
 });
-
-console.log("loaded Story.js - bottom");

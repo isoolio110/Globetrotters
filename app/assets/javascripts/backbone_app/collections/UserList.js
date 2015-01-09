@@ -1,5 +1,3 @@
-console.log("loaded UsersList.js - top");
-
 var UsersList = Backbone.Collection.extend({
   url: '/users',
   model: User,
@@ -10,5 +8,3 @@ var UsersList = Backbone.Collection.extend({
   }
 
 });
-
-console.log("loaded UsersList.js - bottom");

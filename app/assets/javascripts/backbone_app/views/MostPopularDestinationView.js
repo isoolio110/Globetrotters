@@ -1,5 +1,3 @@
-console.log('loaded MostPopularDestinationView.js - top')
-
 var MostPopularDestinationView = Backbone.View.extend({
   tagName: 'div',
   className: 'most-popular-view',
@@ -50,5 +48,3 @@ var MostPopularDestinationView = Backbone.View.extend({
   }
 
 });
-
-console.log('loaded MostPopularDestinationView.js - bottom')

@@ -1,5 +1,3 @@
-console.log('loaded UsersListView.js - top')
-
 var UsersListView = Backbone.View.extend({
   tagName: 'div',
   className: 'profile-pic',
@@ -17,5 +15,3 @@ var UsersListView = Backbone.View.extend({
   }
   
 });
-
-console.log('loaded UsersListView.js - bottom')

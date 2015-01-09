@@ -1,5 +1,3 @@
-console.log('loaded AgendaDetailView.js - top')
-
 var AgendaDetailView = Backbone.View.extend({
   tagName: 'div',
   className: 'agenda-detail',
@@ -53,5 +51,3 @@ var AgendaDetailView = Backbone.View.extend({
   }
 
 });
-
-console.log('loaded AgendaDetailView.js - bottom')

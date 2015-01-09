@@ -1,15 +1,7 @@
 class UsersController < ApplicationController
+
   def index
     @users = User.all
-    user_info = []
-    @users.each do |user|
-      if user != current_user
-      user_info << {id: user.id, current_user: 0, username: user.username, image_url: user.avatar.url(:medium)}
-      else
-      user_info << {id: user.id, current_user: 1, username: user.username, image_url: user.avatar.url(:medium)}
-      end
-    end
-    render json: user_info.to_json
   end
 
   def show

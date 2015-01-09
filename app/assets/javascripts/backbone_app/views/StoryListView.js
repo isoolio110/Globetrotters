@@ -1,5 +1,3 @@
-console.log('loaded StoryListView.js - top')
-
 var StoryListView = Backbone.View.extend({
   tagName: 'div',
   className: 'stories-list',
@@ -34,5 +32,3 @@ var StoryListView = Backbone.View.extend({
   }
 
 });
-
-console.log('loaded StoryListView.js - bottom')
