@@ -14,7 +14,7 @@ var AppRouter = Backbone.Router.extend({
 
   routes: {
       'locations/:user_id': 'location',
-      'profiles/:id' : 'profile',
+      'profiles/:user_id' : 'profile',
       'story/:id' : 'storyDetail',
       'agenda/:id' : 'agendaDetail'
     },
@@ -24,17 +24,8 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////
 
   location: function(user_id){
-    createAndRenderLocationList(parseInt(user_id), this.locationCollection);
+    this.createAndRenderLocationList(parseInt(user_id));
     createAndRenderBarChart(this.topDestinationsCollection);
-
-    function createAndRenderLocationList(id, locationCollection) {
-      locationCollection.url = "/users/" + id + "/locations";
-      locationCollection.fetch({
-        success: function(data) {
-          var newLocationListView = new LocationListView({collection: data});
-        }
-      });
-    }
 
     function createAndRenderBarChart(topDestinationsCollection) {
       topDestinationsCollection.fetch({
@@ -43,6 +34,16 @@ var AppRouter = Backbone.Router.extend({
         }
       });
     }
+  },
+
+  createAndRenderLocationList: function(id) {
+    var locationCollection = this.locationCollection;
+    locationCollection.url = "/users/" + id + "/locations";
+    locationCollection.fetch({
+      success: function(data) {
+        var newLocationListView = new LocationListView({collection: data});
+      }.bind(this)
+    });
   },
 
   ////////////////////////
@@ -67,17 +68,23 @@ var AppRouter = Backbone.Router.extend({
     $('#profile-pg-travel-agenda-container').html(this.view.render().$el);
   },
 
-  travelAgenda: function(id) {
-    console.log('loaded AppRouter: travelAgenda')
-    var userSpecificLocations = this.locationCollection.customFilter({"user_id": id});
+  travelAgenda: function(user_id) {
+    this.createAndRenderLocationList(parseInt(user_id))
     var currentUser  = this.usersCollection.findWhere({current_user: 1});
     var currentUserID = currentUser.attributes.id
-    if (currentUserID == id) {
+
+    if (currentUserID == user_id) {
       templateNumber = 1
     } else {
       templateNumber = 2
     }
-    var agendaView = new TravelAgendaListView({collection: userSpecificLocations, user_id: id, template_number: templateNumber});
+
+    var agendaView = new TravelAgendaListView({
+      collection: this.locationCollection,
+      user_id: user_id,
+      template_number: templateNumber
+    });
+
     this.setTravelAgendaView(agendaView);
   },
 

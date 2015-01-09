@@ -1,18 +1,20 @@
+var router;
+
 $(function(){
   $('#landing-pg-imgs').cycle({
     fx: 'fade',
-    timeout: 2500, 
+    timeout: 2500,
     speed: 2500
   });
 
   $('#map-canvas').hide();
   $('#bar-chart').hide();
-  $('#user-locations-container').hide();  
+  $('#user-locations-container').hide();
 
   $('html,body').scrollTop(0);
 
-  var router = new AppRouter();
-  
+  router = new AppRouter();
+
   Backbone.history.start()
 
   $.fn.serializeObject = function()
