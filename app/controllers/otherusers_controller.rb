@@ -3,8 +3,8 @@ class OtherusersController < ApplicationController
   def index
     otherusers = []
     Location.find_each do |location|
-      Story.where(location: location.location).find_each do |story|
-        otherusers << {user_id: location.user_id, location: location.location, other_user_id: story.user_id}
+      Story.where(location: location.place).find_each do |story|
+        otherusers << {user_id: location.user_id, location: location.place, other_user_id: story.user_id}
       end
     end
 

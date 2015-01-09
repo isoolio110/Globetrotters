@@ -1,10 +1,18 @@
 var MostPopularDestinationView = Backbone.View.extend({
-  tagName: 'div',
+
   className: 'most-popular-view',
+
   template: _.template($('#most-popular-template').html()),
 
   initialize: function(){
     this.listenTo(this.collection, 'sync', this.render);
+    this.render();
+  },
+
+  render: function(){
+    this.$el.html(this.template({}));
+    this.projectData(this.topdest(this.collection));
+    $('#most-popular-destinations-chart-container').html(this.$el);
   },
 
   topdest: function(data) {
@@ -24,7 +32,7 @@ var MostPopularDestinationView = Backbone.View.extend({
       .attr("class", "destination")
       .text(function(d){
         // round with 3 digits
-        var formatNumber = d3.format(".3s");  
+        var formatNumber = d3.format(".3s");
         return d.destination + ": " + formatNumber(d.num_of_visitors) + " visitors" ;
       });
     barchart = d3.select('#bar-chart')
@@ -38,13 +46,5 @@ var MostPopularDestinationView = Backbone.View.extend({
               return '0px';
             }
           });
-  },
-
-  render: function(){
-    var renderedHTML = this.template({});
-    this.$el.html(renderedHTML);    
-    this.projectData(this.topdest(this.collection))
-    return this;
   }
-
 });

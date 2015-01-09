@@ -31,7 +31,12 @@ class LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:location, :user_id, :planned_date, :visited_date)
+    {
+      place: params[:place],
+      user_id: params[:used_id],
+      planned_date: params[:planned_date],
+      visited_date: params[:visited_date]
+    }
   end
 
 end

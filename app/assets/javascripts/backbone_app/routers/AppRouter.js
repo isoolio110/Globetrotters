@@ -1,6 +1,6 @@
 var AppRouter = Backbone.Router.extend({
 
-  initialize: function() {    
+  initialize: function() {
     this.otherUsersCollection = new OtherUsersList();
     this.usersStoriesCollection = new StoryList();
     this.topDestinationsCollection = new MostPopularDestinationList();
@@ -9,7 +9,6 @@ var AppRouter = Backbone.Router.extend({
 
     this.otherUsersCollection.fetch();
     this.usersStoriesCollection.fetch();
-    this.topDestinationsCollection.fetch();
     this.usersCollection.fetch();
   },
 
@@ -17,7 +16,7 @@ var AppRouter = Backbone.Router.extend({
       'locations/:user_id': 'location',
       'profiles/:id' : 'profile',
       'story/:id' : 'storyDetail',
-      'agenda/:id' : 'agendaDetail'      
+      'agenda/:id' : 'agendaDetail'
     },
 
   ////////////////////
@@ -25,37 +24,27 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////
 
   location: function(user_id){
-    this.locationList(parseInt(user_id));
-    this.showBarChart();
+    this.createAndRenderLocationList(parseInt(user_id));
+    this.createAndRenderBarChart();
   },
 
-  locationList: function(id) {
+  createAndRenderLocationList: function(id) {
     var locationCollection = this.locationCollection;
     locationCollection.url = "/users/" + id + "/locations";
     locationCollection.fetch({
       success: function(data) {
-        var newLocationListView = new LocationListView({collection: data}); 
-        this.setLocationListView(newLocationListView);
+        var newLocationListView = new LocationListView({collection: data});
       }.bind(this)
     });
   },
 
-  setLocationListView: function(newView) {
-    if (this.view) {
-      this.view.remove();
-    }
-    this.view = newView;
-    $('#user-locations-container').html(this.view.render().$el);
-  },
-
-  setBarChartView: function(newView) {
-    this.view = newView;
-    $('#most-popular-destinations-chart-container').html(this.view.render().$el);
-  },
-
-  showBarChart: function() {
-    var view = new MostPopularDestinationView({collection: this.topDestinationsCollection});
-    this.setBarChartView(view);
+  createAndRenderBarChart: function() {
+    var topDestinations = this.topDestinationsCollection;
+    topDestinations.fetch({
+      success: function(data) {
+        var newView = new MostPopularDestinationView({collection: topDestinations});
+      }.bind(this)
+    });
   },
 
   ////////////////////////
@@ -65,9 +54,9 @@ var AppRouter = Backbone.Router.extend({
   profile: function(id){
     this.travelAgenda(parseInt(id));
     this.profileLink();
-    this.stories(parseInt(id));    
+    this.stories(parseInt(id));
     this.otherUsers(parseInt(id));
-    this.users(parseInt(id));  
+    this.users(parseInt(id));
   },
 
   // travel agenda view
@@ -79,19 +68,19 @@ var AppRouter = Backbone.Router.extend({
     $('#profile-pg-travel-agenda-container').html(this.view.render().$el);
   },
 
-  travelAgenda: function(id) { 
+  travelAgenda: function(id) {
     console.log('loaded AppRouter: travelAgenda')
     var userSpecificLocations = this.usersLocationCollection.customFilter({"user_id": id});
     var currentUser  = this.usersCollection.findWhere({current_user: 1});
     var currentUserID = currentUser.attributes.id
     if (currentUserID == id) {
-      templateNumber = 1    
+      templateNumber = 1
     } else {
       templateNumber = 2
-    }   
+    }
     var agendaView = new TravelAgendaListView({collection: userSpecificLocations, user_id: id, template_number: templateNumber});
     this.setTravelAgendaView(agendaView);
-  },  
+  },
 
   // profile link view
   setProfileLinkView: function(newView) {
@@ -100,14 +89,14 @@ var AppRouter = Backbone.Router.extend({
   },
 
   profileLink: function() {
-    console.log('loaded AppRouter: profileLink')  
+    console.log('loaded AppRouter: profileLink')
     var currentUser  = this.usersCollection.findWhere({current_user: 1});
     var currentUserID = currentUser.attributes.id;
     var currentUserUsername = currentUser.attributes.username;
     var currentUserImageURL = currentUser.attributes.image_url;
     var profileLinkView = new ProfileLinkView({currentUserID: currentUserID,currentUserUsername: currentUserUsername, currentUserImageURL: currentUserImageURL});
     this.setProfileLinkView(profileLinkView);
-  },  
+  },
 
   setStoriesView: function(newView) {
     this.view = newView;
@@ -120,7 +109,7 @@ var AppRouter = Backbone.Router.extend({
     var currentUser  = this.usersCollection.findWhere({current_user: 1});
     var currentUserID = currentUser.attributes.id
     if (currentUserID == id) {
-      templateNumber = 1    
+      templateNumber = 1
     } else {
       templateNumber = 2
     }
@@ -136,9 +125,9 @@ var AppRouter = Backbone.Router.extend({
 
   otherUsers: function(id){
     console.log('loaded AppRouter: otherUsers')
-    var userSpecificOtherUsers = this.otherUsersCollection.customFilter({"user_id": id})      
+    var userSpecificOtherUsers = this.otherUsersCollection.customFilter({"user_id": id})
     var otherUsersView = new OtherUsersListView({collection: userSpecificOtherUsers});
-    this.setOtherUsersView(otherUsersView);   
+    this.setOtherUsersView(otherUsersView);
   },
 
   setUsersView: function(newView) {
