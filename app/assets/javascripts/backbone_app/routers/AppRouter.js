@@ -24,27 +24,25 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////
 
   location: function(user_id){
-    this.createAndRenderLocationList(parseInt(user_id));
-    this.createAndRenderBarChart();
-  },
+    createAndRenderLocationList(parseInt(user_id), this.locationCollection);
+    createAndRenderBarChart(this.topDestinationsCollection);
 
-  createAndRenderLocationList: function(id) {
-    var locationCollection = this.locationCollection;
-    locationCollection.url = "/users/" + id + "/locations";
-    locationCollection.fetch({
-      success: function(data) {
-        var newLocationListView = new LocationListView({collection: data});
-      }.bind(this)
-    });
-  },
+    function createAndRenderLocationList(id, locationCollection) {
+      locationCollection.url = "/users/" + id + "/locations";
+      locationCollection.fetch({
+        success: function(data) {
+          var newLocationListView = new LocationListView({collection: data});
+        }
+      });
+    }
 
-  createAndRenderBarChart: function() {
-    var topDestinations = this.topDestinationsCollection;
-    topDestinations.fetch({
-      success: function(data) {
-        var newView = new MostPopularDestinationView({collection: topDestinations});
-      }.bind(this)
-    });
+    function createAndRenderBarChart(topDestinationsCollection) {
+      topDestinationsCollection.fetch({
+        success: function(data) {
+          var newView = new MostPopularDestinationView({ collection: data });
+        }
+      });
+    }
   },
 
   ////////////////////////
@@ -52,11 +50,12 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////////
 
   profile: function(id){
-    this.travelAgenda(parseInt(id));
+    var userId = parseInt(id);
+    this.travelAgenda(userId);
     this.profileLink();
-    this.stories(parseInt(id));
-    this.otherUsers(parseInt(id));
-    this.users(parseInt(id));
+    this.stories(userId);
+    this.otherUsers(userId);
+    this.users(userId);
   },
 
   // travel agenda view
@@ -70,7 +69,7 @@ var AppRouter = Backbone.Router.extend({
 
   travelAgenda: function(id) {
     console.log('loaded AppRouter: travelAgenda')
-    var userSpecificLocations = this.usersLocationCollection.customFilter({"user_id": id});
+    var userSpecificLocations = this.locationCollection.customFilter({"user_id": id});
     var currentUser  = this.usersCollection.findWhere({current_user: 1});
     var currentUserID = currentUser.attributes.id
     if (currentUserID == id) {
@@ -167,7 +166,7 @@ var AppRouter = Backbone.Router.extend({
 
   agendaDetail: function(id) {
     console.log('loaded AppRouter: agendaDetail')
-    var location = this.usersLocationCollection.get(parseInt(id))
+    var location = this.locationCollection.get(parseInt(id))
     var agendaDetailView = new AgendaDetailView({model: location});
     this.setAgendaDetailView(agendaDetailView);
   },

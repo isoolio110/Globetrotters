@@ -13,8 +13,8 @@ class LocationsController < ApplicationController
   end
 
   def create
-    binding.pry
     location = Location.new(location_params)
+    location.user = current_user
     if location.save
       render json: location.to_json, status: 200
     else
