@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # has_many :user_goals
-  has_many :user_locations
+  has_many :locations
   has_many :stories
 
   # Validations

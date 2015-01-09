@@ -22,7 +22,7 @@ var TravelAgendaListView = Backbone.View.extend({
     $('#profile-pg-stories-container').show();
     $('#profile-pg-other-users-container').show();  
     var renderedHTML = this.template({
-      userlocations: this.collection,
+      locations: this.collection,
       user_id: this.user_id});
     this.$el.html(renderedHTML);
     return this;

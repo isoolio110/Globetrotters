@@ -1,32 +1,51 @@
 var AppRouter = Backbone.Router.extend({
+
+  initialize: function() {    
+    this.otherUsersCollection = new OtherUsersList();
+    this.usersStoriesCollection = new StoryList();
+    this.topDestinationsCollection = new MostPopularDestinationList();
+    this.usersCollection = new UsersList();
+    this.locationCollection = new LocationList();
+
+    this.otherUsersCollection.fetch();
+    this.usersStoriesCollection.fetch();
+    this.topDestinationsCollection.fetch();
+    this.usersCollection.fetch();
+  },
+
   routes: {
-      'userlocations/:id': 'userLocation',
+      'locations/:user_id': 'location',
       'profiles/:id' : 'profile',
       'story/:id' : 'storyDetail',
       'agenda/:id' : 'agendaDetail'      
     },
 
-  initialize: function(options) {
-    this.usersCollection = options.usersCollection;
-    this.usersLocationCollection = options.usersLocationCollection;
-    this.topDestinationsCollection = options.topDestinationsCollection;
-    this.usersStoriesCollection = options.usersStoriesCollection;
-    this.otherUsersCollection = options.otherUsersCollection;
+  ////////////////////
+  // Location Stuff //
+  ////////////////////
+
+  location: function(user_id){
+    this.locationList(parseInt(user_id));
+    this.showBarChart();
   },
 
-  // userlocations page
-  setLocationsListView: function(newView) {
+  locationList: function(id) {
+    var locationCollection = this.locationCollection;
+    locationCollection.url = "/users/" + id + "/locations";
+    locationCollection.fetch({
+      success: function(data) {
+        var newLocationListView = new LocationListView({collection: data}); 
+        this.setLocationListView(newLocationListView);
+      }.bind(this)
+    });
+  },
+
+  setLocationListView: function(newView) {
     if (this.view) {
       this.view.remove();
     }
     this.view = newView;
     $('#user-locations-container').html(this.view.render().$el);
-  },
-
-  userLocationsList: function(id) {
-    var userSpecificLocations = this.usersLocationCollection.customFilter({"user_id": parseInt(id)});
-    var view = new UserLocationListView({collection: userSpecificLocations}); 
-    this.setLocationsListView(view);
   },
 
   setBarChartView: function(newView) {
@@ -39,12 +58,17 @@ var AppRouter = Backbone.Router.extend({
     this.setBarChartView(view);
   },
 
-  userLocation: function(id){
-    this.userLocationsList(parseInt(id));
-    this.showBarChart();
-  },
+  ////////////////////////
+  // Profile Page Stuff //
+  ////////////////////////
 
-  // profile page
+  profile: function(id){
+    this.travelAgenda(parseInt(id));
+    this.profileLink();
+    this.stories(parseInt(id));    
+    this.otherUsers(parseInt(id));
+    this.users(parseInt(id));  
+  },
 
   // travel agenda view
   setTravelAgendaView: function(newView) {
@@ -129,22 +153,9 @@ var AppRouter = Backbone.Router.extend({
     this.setUsersView(UsersView);
   },
 
-  profile: function(id){
-    this.travelAgenda(parseInt(id));
-    this.profileLink();
-    this.stories(parseInt(id));    
-    this.otherUsers(parseInt(id));
-    this.users(parseInt(id));  
-  },
-
-  // story detail page
-  setStoryView: function(newView) {
-    if (this.view) {
-      this.view.remove();
-    }
-    this.view = newView;
-    this.view.render().$el.appendTo('#story-detail-container');
-  },
+  ///////////////////////
+  // Story Detail Page //
+  ///////////////////////
 
   storyDetail: function(id) {
     console.log('loaded AppRouter: storyDetail')
@@ -153,21 +164,31 @@ var AppRouter = Backbone.Router.extend({
     this.setStoryView(storyDetailView);
   },
 
-  // agenda detail page
-  setAgendaDetailView: function(newView) {
+  setStoryView: function(newView) {
     if (this.view) {
       this.view.remove();
     }
     this.view = newView;
-    this.view.render().$el.appendTo('#agenda-detail-container');
+    this.view.render().$el.appendTo('#story-detail-container');
   },
+
+  ////////////////////////
+  // Agenda Detail Page //
+  ////////////////////////
 
   agendaDetail: function(id) {
     console.log('loaded AppRouter: agendaDetail')
     var location = this.usersLocationCollection.get(parseInt(id))
     var agendaDetailView = new AgendaDetailView({model: location});
     this.setAgendaDetailView(agendaDetailView);
-  }
+  },
 
+  setAgendaDetailView: function(newView) {
+    if (this.view) {
+      this.view.remove();
+    }
+    this.view = newView;
+    this.view.render().$el.appendTo('#agenda-detail-container');
+  }
 
 });

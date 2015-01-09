@@ -2,7 +2,7 @@ class OtherusersController < ApplicationController
 
   def index
     otherusers = []
-    UserLocation.find_each do |location|
+    Location.find_each do |location|
       Story.where(location: location.location).find_each do |story|
         otherusers << {user_id: location.user_id, location: location.location, other_user_id: story.user_id}
       end

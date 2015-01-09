@@ -4,14 +4,18 @@ Rails.application.routes.draw do
   resources :welcome
   root "welcome#index"
 
-  get "/login" => "users#login", as: "login"
-  post "/sessions" => "sessions#login"
-  delete "/sessions" => "sessions#logout", as: "logout"
+  get "/login"          => "sessions#new", as: "login"
+  post "/sessions"      => "sessions#create"
+  delete "/sessions"    => "sessions#destroy", as: "logout"
 
   resources :mostpopulardestinations
   resources :otherusers
   resources :stories
-  resources :users
-  resources :userlocations
+
+  # /users/...
+  resources :users do
+    #/users/:id/locations
+    resources :locations
+  end
 
 end

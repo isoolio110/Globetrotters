@@ -1,4 +1,4 @@
-var UserLocation = Backbone.Model.extend({
+var Location = Backbone.Model.extend({
   defaults: {
     user_id: '',
     location: '',
