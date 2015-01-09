@@ -1,5 +1,7 @@
 var LocationListView = Backbone.View.extend({
+  
   className: 'userlocations-list',
+  
   template: _.template($('#user-location-list-template').html()),
 
   // set up a listener
@@ -30,10 +32,9 @@ var LocationListView = Backbone.View.extend({
   // the onSubmit function states that when the event occurs:
   onSubmit: function(e){
     e.preventDefault();
-    // get the value from the form where the name of the input tag is goal and assign it to the variable goal
     var new_location = this.$('[name="location"]').val();
-      this.collection.create({place: new_location});
-    },
+    this.collection.create({ place: new_location });
+  },  
 
   onRemove: function(e) {
     e.preventDefault();

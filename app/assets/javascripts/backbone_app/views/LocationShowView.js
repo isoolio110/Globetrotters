@@ -38,7 +38,6 @@ var LocationShowView = Backbone.View.extend({
   onSave: function(e) {
     e.preventDefault();
     console.log(this.$('input'))
-    debugger;
     var data = this.$('input').serializeObject();
     this.model.save(data);
     this.done();

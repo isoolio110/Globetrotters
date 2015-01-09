@@ -169,7 +169,9 @@ var AppRouter = Backbone.Router.extend({
       user_id: user_id,
       id: location_id
     });
-    
+
+    location.url = "/users/" + user_id + "/locations/" + location_id;
+
     location.fetch({
       success: function(){
         this.locationShowView = new LocationShowView({model: location});
