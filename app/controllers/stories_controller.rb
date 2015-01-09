@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
 
   def index
-    render json: Story.all.order(:id).to_json
+    render json: Story.where(user_id: params[:user_id]).order(:id).to_json
   end
 
   def show

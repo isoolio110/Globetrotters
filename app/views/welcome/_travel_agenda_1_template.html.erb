@@ -8,7 +8,8 @@
   <br>
     <%% locations.each(function(location){ %>
       <div class="travel-agenda-item"> 
-        <a href="#agenda/<%%= location.get('id') %>" class="travel-agenda-item-title"><%%= location.get('place') %></a><br>
+        <a href="#users/<%%= location.get('user_id')%>/locations/<%%= location.get('id') %>" class="travel-agenda-item-title">
+          <%%= location.get('place') %></a><br>
         <p>Planned date: <%%= location.get('planned_date') %></p>
         <p>Visited date: <%%= location.get('visited_date') %></p>
       </div>

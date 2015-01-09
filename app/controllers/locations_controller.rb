@@ -33,7 +33,7 @@ class LocationsController < ApplicationController
   def location_params
     {
       place: params[:place],
-      user_id: params[:used_id],
+      user_id: params[:user_id],
       planned_date: params[:planned_date],
       visited_date: params[:visited_date]
     }

@@ -1,7 +1,5 @@
 var LocationListView = Backbone.View.extend({
-
   className: 'userlocations-list',
-  // the underscore template id is from the script tag on the html
   template: _.template($('#user-location-list-template').html()),
 
   // set up a listener
@@ -20,11 +18,8 @@ var LocationListView = Backbone.View.extend({
     $('#profile-pg-profile-link-container').hide();
     $('#map-canvas').show();
     $('#bar-chart').show();
-    // put the data to be rendered into the list views html
     this.$el.html(this.template({ locations: this.collection }));
-    // show the html
     $('#user-locations-container').html(this.$el).show();
-
   },
 
   events: {

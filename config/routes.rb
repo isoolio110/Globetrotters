@@ -10,12 +10,12 @@ Rails.application.routes.draw do
 
   resources :mostpopulardestinations
   resources :otherusers
-  resources :stories
 
   # /users/...
   resources :users do
     #/users/:id/locations
     resources :locations
+    resources :stories
   end
 
 end

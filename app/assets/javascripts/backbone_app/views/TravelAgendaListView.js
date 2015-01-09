@@ -1,7 +1,9 @@
 var TravelAgendaListView = Backbone.View.extend({
-  tagName: 'div',
+
   className: 'travel-agenda-list',
+  
   template1: _.template($('#travel-agenda-list-1-template').html()),
+  
   template2: _.template($('#travel-agenda-list-2-template').html()),  
 
   initialize: function(options){
@@ -9,6 +11,7 @@ var TravelAgendaListView = Backbone.View.extend({
     this.user_id = options.user_id;
     this.template = this['template' + options.template_number];   
     this.listenTo(this.collection, 'sync', this.render);
+    this.render();
   },
   
   render: function(){
