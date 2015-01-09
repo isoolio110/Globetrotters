@@ -6,7 +6,7 @@
   <p class="profile-section-header" id="travel-agenda-header"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Your Travel Agenda</p>
     <%% locations.each(function(location){ %>
       <div class="travel-agenda-item"> 
-        <p class="travel-agenda-item-title"><%%= location.get('location') %></p>
+        <p class="travel-agenda-item-title"><%%= location.get('place') %></p>
         <p>Planned date: <%%= location.get('planned_date') %></p>
         <p>Visited date: <%%= location.get('visited_date') %></p>
       </div>

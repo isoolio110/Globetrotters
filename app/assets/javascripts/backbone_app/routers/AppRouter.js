@@ -6,7 +6,7 @@ var AppRouter = Backbone.Router.extend({
     this.topDestinationsCollection = new MostPopularDestinationList();
     this.usersCollection = new UsersList();
     this.locationCollection = new LocationList();
-
+    
     this.otherUsersCollection.fetch();
     this.usersStoriesCollection.fetch();
     this.usersCollection.fetch();
