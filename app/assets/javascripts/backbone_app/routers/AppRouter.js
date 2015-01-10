@@ -1,26 +1,18 @@
 var AppRouter = Backbone.Router.extend({
 
   initialize: function() {
-    this.otherUsersCollection = new OtherUsersList();
+    this.otherUserCollection = new OtherUsersList();
     this.storyCollection = new StoryList();
     this.topDestinationsCollection = new MostPopularDestinationList();
     this.usersCollection = new UsersList();
     this.locationCollection = new LocationList();
-    
-    this.otherUsersCollection.fetch();
-    // this.usersStoriesCollection.fetch();
-    this.usersCollection.fetch({
-      success: function(data) {
-        this.currentUser = this.getCurrentUser(data);
-      }.bind(this)
-    });
   },
 
   routes: {
-      'locations/:user_id': 'location',                           // DONE
-      'profiles/:user_id' : 'profile',                            // Working
+      'locations/:user_id': 'location',
+      'profiles/:user_id' : 'profile',
       'story/:id' : 'storyDetail',
-      'users/:user_id/locations/:location_id' : 'locationDetail'  //DONE
+      'users/:user_id/locations/:location_id' : 'locationDetail'
     },
 
   ////////////////////
@@ -45,14 +37,14 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////////
 
   profile: function(user_id){
-    user_id = parseInt(user_id)
+    var user_id = parseInt(user_id)
     this.createAndRenderTravelAgendaList(user_id);
     this.createAndRenderProfileLink();
     this.createAndRenderUser(user_id);
     this.createAndRenderStoriesList(user_id);
-    // this.createAndRenderOtherUsersList(user_id);
+    this.createAndRenderOtherUsersList(user_id);
   },
-
+ 
   createAndRenderTravelAgendaList: function(user_id) {
     this.createAndRenderLocationList(parseInt(user_id))
     
@@ -124,7 +116,6 @@ var AppRouter = Backbone.Router.extend({
     var storyCollection = this.storyCollection;
     storyCollection.url = "/users/" + user_id + "/stories";
     storyCollection.fetch();
-    console.log(storyCollection);
     var templateNumber;
     this.usersCollection.fetch({
       success: function(data) {
@@ -143,16 +134,16 @@ var AppRouter = Backbone.Router.extend({
   },
 
 
-  // createAndRenderOtherUsersList: function(user_id){
-  //   var otherUserCollection = this.otherUserCollection;
-  //   otherUserCollection.url = "/users/" + user_id + "/otherusers"
-  //   otherUserCollection.fetch({
-  //     success: function(data){
-  //       var newOtherUserListView = new OtherUsersListView({
-  //         collection: data})
-  //     }.bind(this)
-  //   });
-  // },
+  createAndRenderOtherUsersList: function(user_id){
+    var otherUserCollection = this.otherUserCollection;
+    otherUserCollection.url = "/users/" + user_id + "/otherusers"
+    otherUserCollection.fetch({
+      success: function(data){
+        var newOtherUserListView = new OtherUsersListView({
+          collection: data})
+      }.bind(this)
+    });
+  },
 
 
 

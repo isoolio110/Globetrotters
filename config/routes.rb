@@ -13,9 +13,9 @@ Rails.application.routes.draw do
 
   # /users/...
   resources :users do
-    #/users/:id/locations
     resources :locations
     resources :stories
+    resources :otherusers
   end
 
 end
