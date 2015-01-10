@@ -1,5 +1,4 @@
 var StoryListView = Backbone.View.extend({
-  tagName: 'div',
   className: 'stories-list',
   template1: _.template($('#story-list-1-template').html()),
   template2: _.template($('#story-list-2-template').html()),
@@ -7,18 +6,13 @@ var StoryListView = Backbone.View.extend({
   initialize: function(options){
     this.template = this['template' + options.template_number];
     this.collection = options.collection;
-    // this.listenTo(this.collection, 'sync', this.render);
-    this.listenTo(this.collection, 'change', this.render);
+    this.listenTo(this.collection, 'sync', this.render);
     this.render();
   },
 
   render: function(){
     this.$el.html(this.template({ stories: this.collection }));
     $('#profile-pg-stories-container').html(this.$el).show();
-    // var renderedHTML = this.template({
-    //   stories: this.collection});
-    // this.$el.html(renderedHTML);
-    // return this;
   },
 
   events: {

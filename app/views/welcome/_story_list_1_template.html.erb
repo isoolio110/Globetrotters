@@ -13,7 +13,7 @@
     <%% stories.each(function(story){ %>
     <div class="story-list-item">
       <div>
-        <a href="#story/<%%= story.get('id') %>" id="story-title"><%%= story.get('title') %></a>
+        <a href="#users/<%%= story.get('user_id') %>/stories/<%%= story.get('id') %>" id="story-title"><%%= story.get('title') %></a>
       </div>
       <div id="story-location">
         where: <%%= story.get('location') %>

@@ -11,8 +11,8 @@ var AppRouter = Backbone.Router.extend({
   routes: {
       'locations/:user_id': 'location',
       'profiles/:user_id' : 'profile',
-      'story/:id' : 'storyDetail',
-      'users/:user_id/locations/:location_id' : 'locationDetail'
+      'users/:user_id/locations/:location_id' : 'locationDetail',
+      'users/:user_id/stories/:story_id' : 'storyDetail'      
     },
 
   ////////////////////
@@ -47,7 +47,7 @@ var AppRouter = Backbone.Router.extend({
  
   createAndRenderTravelAgendaList: function(user_id) {
     this.createAndRenderLocationList(parseInt(user_id))
-    
+  
     var templateNumber;
 
     if(!this.currentUser) {
@@ -115,24 +115,28 @@ var AppRouter = Backbone.Router.extend({
   createAndRenderStoriesList: function(user_id){
     var storyCollection = this.storyCollection;
     storyCollection.url = "/users/" + user_id + "/stories";
-    storyCollection.fetch();
+    var that = this;
     var templateNumber;
     this.usersCollection.fetch({
-      success: function(data) {
-        this.currentUser = this.getCurrentUser(data);
-      if (this.currentUser.attributes.id == user_id) {
-        templateNumber = 1
-      } else {
-        templateNumber = 2
-      }
-      var newStoryListView = new StoryListView({
-        collection: data, 
-        template_number: templateNumber
-      });
-      }.bind(this)
+        success: function(data) {
+          this.currentUser = this.getCurrentUser(data);
+          if (this.currentUser.attributes.id == user_id) {
+            templateNumber = 1
+          } else {
+            templateNumber = 2
+          }
+          var that = this;
+          that.storyCollection.fetch({
+            success: function(data){
+              var newStoriesListView = new StoryListView({
+              collection: data,
+              template_number: templateNumber  
+              })
+            }
+          });
+        }.bind(this)
     });
   },
-
 
   createAndRenderOtherUsersList: function(user_id){
     var otherUserCollection = this.otherUserCollection;
@@ -145,25 +149,23 @@ var AppRouter = Backbone.Router.extend({
     });
   },
 
-
-
-
   ///////////////////////
   // Story Detail Page //
   ///////////////////////
 
-  storyDetail: function(id) {
-    var story = this.usersStoriesCollection.get(parseInt(id))
-    var storyDetailView = new StoryDetailView({model: story});
-    this.setStoryView(storyDetailView);
-  },
+  storyDetail: function(user_id, story_id){
+    var story = new Story({
+      user_id: user_id,
+      id: story_id
+      });
 
-  setStoryView: function(newView) {
-    if (this.view) {
-      this.view.remove();
-    }
-    this.view = newView;
-    this.view.render().$el.appendTo('#story-detail-container');
+    story.url = "/users/" + user_id + "/stories/" + story_id;
+
+    story.fetch({
+      success: function(){
+        var storyDetailView = new StoryDetailView({model: story});
+      }
+    });
   },
 
   ////////////////////////
