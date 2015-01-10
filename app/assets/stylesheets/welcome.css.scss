@@ -194,6 +194,8 @@ animation-delay: 2.2s;
 #add-destinations {
   height: 100%;
   width: 100%;
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
 
 #add-destinations-header {

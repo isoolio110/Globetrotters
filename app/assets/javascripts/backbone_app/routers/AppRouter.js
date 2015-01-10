@@ -45,11 +45,12 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////////
 
   profile: function(user_id){
-    this.createAndRenderTravelAgendaList(parseInt(user_id));
-    // this.createAndRenderProfileLink();
-    // this.createAndRenderStoriesList(userId);
-    // this.createAndRenderOtherUsersList(userId);
-    // this.createAndRenderUserList(userId);
+    user_id = parseInt(user_id)
+    this.createAndRenderTravelAgendaList(user_id);
+    this.createAndRenderProfileLink();
+    this.createAndRenderUser(user_id);
+    this.createAndRenderStoriesList(user_id);
+    // this.createAndRenderOtherUsersList(user_id);
   },
 
   createAndRenderTravelAgendaList: function(user_id) {
@@ -95,7 +96,6 @@ var AppRouter = Backbone.Router.extend({
   },
 
   createAndRenderProfileLink: function() {
-
     if(!this.currentUser) {
       this.usersCollection.fetch({
         success: function(data) {
@@ -103,29 +103,45 @@ var AppRouter = Backbone.Router.extend({
           var profileLinkView = new ProfileLinkView({model: this.currentUser});
         }.bind(this)
       });
-    } else {
-      var profileLinkView = new ProfileLinkView(this.currentUser);
+    } 
+    else {
+      var profileLinkView = new ProfileLinkView({model: this.currentUser});
     }
   },
 
-  // createAndRenderStoriesList: function(user_id){
-  //   var currentUser  = this.usersCollection.findWhere({current_user: 1});
-  //   var currentUserID = currentUser.attributes.id
-  //   if (currentUserID == user_id) {
-  //     templateNumber = 1
-  //   } else {
-  //     templateNumber = 2
-  //   };
-  //   that = this;
-  //   var storyCollection = this.storyCollection
-  //   storyCollection.url = "/users/" + user_id + "/stories"
-  //   // how do i pass in the template number??
-  //   storyCollection.fetch({
-  //     success: function(data) {
-  //       var newStoryListView = new StoryListView({collection: data, template_number: 1}); 
-  //     }.bind(this)
-  //   });
-  // },
+  createAndRenderUser: function(user_id){
+    var userCollection = this.usersCollection;
+    userCollection.url = "/users/" + user_id;
+    userCollection.fetch({
+      success: function(data){
+        var newUserView = new UsersListView({
+          collection: data});
+      }.bind(this)
+    })
+  },
+
+  createAndRenderStoriesList: function(user_id){
+    var storyCollection = this.storyCollection;
+    storyCollection.url = "/users/" + user_id + "/stories";
+    storyCollection.fetch();
+    console.log(storyCollection);
+    var templateNumber;
+    this.usersCollection.fetch({
+      success: function(data) {
+        this.currentUser = this.getCurrentUser(data);
+      if (this.currentUser.attributes.id == user_id) {
+        templateNumber = 1
+      } else {
+        templateNumber = 2
+      }
+      var newStoryListView = new StoryListView({
+        collection: data, 
+        template_number: templateNumber
+      });
+      }.bind(this)
+    });
+  },
+
 
   // createAndRenderOtherUsersList: function(user_id){
   //   var otherUserCollection = this.otherUserCollection;
@@ -138,16 +154,7 @@ var AppRouter = Backbone.Router.extend({
   //   });
   // },
 
-  // createAndRenderUserList: function(user_id){
-  //   var userCollection = this.usersCollection;
-  //   userCollection.url = "/users/" + user_id;
-  //   userCollection.fetch({
-  //     success: function(data){
-  //       var newUserView = new UsersListView({
-  //         collection: data});
-  //     }.bind(this)
-  //   })
-  // },
+
 
 
   ///////////////////////
@@ -192,9 +199,9 @@ var AppRouter = Backbone.Router.extend({
   // SHARED STUFF //
   //////////////////
 
-  createAndRenderLocationList: function(id) {
+  createAndRenderLocationList: function(user_id) {
     var locationCollection = this.locationCollection;
-    locationCollection.url = "/users/" + id + "/locations";
+    locationCollection.url = "/users/" + user_id + "/locations";
     locationCollection.fetch({
       success: function(data) {
         var newLocationListView = new LocationListView({collection: data});

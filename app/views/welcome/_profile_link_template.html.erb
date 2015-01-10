@@ -1,2 +1,2 @@
-<img src="<%%= currentUserImageURL %>" id="profile-pic-nav">
-<a href="#profiles/<%%=currentUserID %>"><%%= currentUserUsername %></a>
+<img src="<%%= this.model.get('image_url') %>" id="profile-pic-nav">
+<a href="#profiles/<%%=this.model.get('id') %>"><%%= this.model.get('username') %></a>
