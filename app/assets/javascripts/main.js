@@ -13,9 +13,9 @@ $(function(){
 
   $('html,body').scrollTop(0);
 
-  router = new AppRouter();
+  MyAppRouter = new AppRouter();
 
-  Backbone.history.start()
+  Backbone.history.start({pushState: false});
 
   $.fn.serializeObject = function()
   {

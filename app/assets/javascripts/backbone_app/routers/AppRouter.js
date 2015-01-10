@@ -11,16 +11,16 @@ var AppRouter = Backbone.Router.extend({
     // this.usersStoriesCollection.fetch();
     this.usersCollection.fetch({
       success: function(data) {
-        this.currentUserID = this.getCurrentUserId(data);
+        this.currentUser = this.getCurrentUser(data);
       }.bind(this)
     });
   },
 
   routes: {
-      'locations/:user_id': 'location',
-      'profiles/:user_id' : 'profile',
+      'locations/:user_id': 'location',                           // DONE
+      'profiles/:user_id' : 'profile',                            // Working
       'story/:id' : 'storyDetail',
-      'users/:user_id/locations/:location_id' : 'locationDetail'
+      'users/:user_id/locations/:location_id' : 'locationDetail'  //DONE
     },
 
   ////////////////////
@@ -40,16 +40,6 @@ var AppRouter = Backbone.Router.extend({
     }
   },
 
-  createAndRenderLocationList: function(id) {
-    var locationCollection = this.locationCollection;
-    locationCollection.url = "/users/" + id + "/locations";
-    locationCollection.fetch({
-      success: function(data) {
-        var newLocationListView = new LocationListView({collection: data});
-      }.bind(this)
-    });
-  },
-
   ////////////////////////
   // Profile Page Stuff //
   ////////////////////////
@@ -65,39 +55,58 @@ var AppRouter = Backbone.Router.extend({
   createAndRenderTravelAgendaList: function(user_id) {
     this.createAndRenderLocationList(parseInt(user_id))
     
-    if (this.currentUserID == user_id) {
-      templateNumber = 1
+    var templateNumber;
+
+    if(!this.currentUser) {
+      this.usersCollection.fetch({
+        success: function(data) {
+          this.currentUser = this.getCurrentUser(data);
+          
+        if (this.currentUser.attributes.id == user_id) {
+          templateNumber = 1
+        } else {
+          templateNumber = 2
+        }
+
+        var agendaView = new TravelAgendaListView({
+          collection: this.locationCollection,
+          user_id: user_id,
+          template_number: templateNumber
+        });
+
+        }.bind(this)
+      });
     } else {
-      templateNumber = 2
+
+      if (this.currentUser.attributes.id == user_id) {
+          templateNumber = 1
+        } else {
+          templateNumber = 2
+        }
+
+        var agendaView = new TravelAgendaListView({
+          collection: this.locationCollection,
+          user_id: user_id,
+          template_number: templateNumber
+        });
+
     }
     
-    var agendaView = new TravelAgendaListView({
-      collection: this.locationCollection,
-      user_id: user_id,
-      template_number: templateNumber
-    });
-    
-    this.setTravelAgendaView(agendaView);
   },
 
-  // travel agenda view
-  setTravelAgendaView: function(newView) {
-    if (this.view) {
-      this.view.remove();
+  createAndRenderProfileLink: function() {
+
+    if(!this.currentUser) {
+      this.usersCollection.fetch({
+        success: function(data) {
+          this.currentUser = this.getCurrentUser(data);
+          var profileLinkView = new ProfileLinkView({model: this.currentUser});
+        }.bind(this)
+      });
+    } else {
+      var profileLinkView = new ProfileLinkView(this.currentUser);
     }
-    this.view = newView;
-    $('#profile-pg-travel-agenda-container').html(this.view.render().$el);
   },
-
-
-  // createAndRenderProfileLink: function() {
-  //   where should the fetch be happening?
-  //   var currentUser  = this.usersCollection.findWhere({current_user: 1});
-  //   var currentUserID = currentUser.attributes.id;
-  //   var currentUserUsername = currentUser.attributes.username;
-  //   var currentUserImageURL = currentUser.attributes.image_url;
-  //   var profileLinkView = new ProfileLinkView({currentUserID: currentUserID,currentUserUsername: currentUserUsername, currentUserImageURL: currentUserImageURL});
-  // },
 
   // createAndRenderStoriesList: function(user_id){
   //   var currentUser  = this.usersCollection.findWhere({current_user: 1});
@@ -179,13 +188,22 @@ var AppRouter = Backbone.Router.extend({
     });
   },
 
-  /////////////////
-  // MISC. STUFF //
-  /////////////////
+  //////////////////
+  // SHARED STUFF //
+  //////////////////
 
-  getCurrentUserId: function(userCollection) {
-    var currentUser  = userCollection.findWhere({current_user: 1});
-    return currentUser.attributes.id
+  createAndRenderLocationList: function(id) {
+    var locationCollection = this.locationCollection;
+    locationCollection.url = "/users/" + id + "/locations";
+    locationCollection.fetch({
+      success: function(data) {
+        var newLocationListView = new LocationListView({collection: data});
+      }.bind(this)
+    });
+  },
+
+  getCurrentUser: function(userCollection) {
+    return userCollection.findWhere({current_user: 1});
   }
 
 });
