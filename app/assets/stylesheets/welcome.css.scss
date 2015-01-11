@@ -194,8 +194,6 @@ animation-delay: 2.2s;
 #add-destinations {
   height: 100%;
   width: 100%;
-  overflow-y:scroll;
-  overflow-x:hidden;
 }
 
 #add-destinations-header {
@@ -336,6 +334,12 @@ animation-delay: 2.2s;
   color: #2496CC;
   font-size: 1.5em;
 }
+
+.travel-agenda-item-title:hover {
+  color: #2496CC;
+  font-size: 1.5em;
+}
+
 
 #profile-stories-div {
   background-color: #8B9199;

@@ -1,7 +1,7 @@
 class LocationsController < ApplicationController
 
   def index
-    render json: Location.where(user_id: params[:user_id]).order(:id).to_json
+    @locations = Location.where(user_id: params[:user_id]).order(:id)
   end
 
   def show

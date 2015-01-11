@@ -12,7 +12,7 @@ var AppRouter = Backbone.Router.extend({
       'locations/:user_id': 'location',
       'profiles/:user_id' : 'profile',
       'users/:user_id/locations/:location_id' : 'locationDetail',
-      'users/:user_id/stories/:story_id' : 'storyDetail'      
+      'users/:user_id/stories/:story_id' : 'storyDetail'
     },
 
   ////////////////////
@@ -44,21 +44,20 @@ var AppRouter = Backbone.Router.extend({
     this.createAndRenderStoriesList(user_id);
     this.createAndRenderOtherUsersList(user_id);
   },
- 
+
   createAndRenderTravelAgendaList: function(user_id) {
     this.createAndRenderLocationList(parseInt(user_id))
-  
+
     var templateNumber;
 
-    if(!this.currentUser) {
-      this.usersCollection.fetch({
-        success: function(data) {
-          this.currentUser = this.getCurrentUser(data);
-          
+    this.usersCollection.fetch({
+      success: function(data) {
+        this.currentUser = this.getCurrentUser(data);
+
         if (this.currentUser.attributes.id == user_id) {
-          templateNumber = 1
+          templateNumber = 1;
         } else {
-          templateNumber = 2
+          templateNumber = 2;
         }
 
         var agendaView = new TravelAgendaListView({
@@ -67,38 +66,17 @@ var AppRouter = Backbone.Router.extend({
           template_number: templateNumber
         });
 
-        }.bind(this)
-      });
-    } else {
-
-      if (this.currentUser.attributes.id == user_id) {
-          templateNumber = 1
-        } else {
-          templateNumber = 2
-        }
-
-        var agendaView = new TravelAgendaListView({
-          collection: this.locationCollection,
-          user_id: user_id,
-          template_number: templateNumber
-        });
-
-    }
-    
+      }.bind(this)
+    });
   },
 
   createAndRenderProfileLink: function() {
-    if(!this.currentUser) {
-      this.usersCollection.fetch({
-        success: function(data) {
-          this.currentUser = this.getCurrentUser(data);
-          var profileLinkView = new ProfileLinkView({model: this.currentUser});
-        }.bind(this)
-      });
-    } 
-    else {
-      var profileLinkView = new ProfileLinkView({model: this.currentUser});
-    }
+    this.usersCollection.fetch({
+      success: function(data) {
+        this.currentUser = this.getCurrentUser(data);
+        this.profileLinkView = new ProfileLinkView({model: this.currentUser});
+      }.bind(this)
+    });
   },
 
   createAndRenderUser: function(user_id){
@@ -107,40 +85,42 @@ var AppRouter = Backbone.Router.extend({
     userCollection.fetch({
       success: function(data){
         var newUserView = new UsersListView({
-          collection: data});
+          collection: data
+        });
       }.bind(this)
     })
   },
 
   createAndRenderStoriesList: function(user_id){
-    var storyCollection = this.storyCollection;
-    storyCollection.url = "/users/" + user_id + "/stories";
-    var that = this;
-    var templateNumber;
+
     this.usersCollection.fetch({
-        success: function(data) {
-          this.currentUser = this.getCurrentUser(data);
-          if (this.currentUser.attributes.id == user_id) {
-            templateNumber = 1
-          } else {
-            templateNumber = 2
-          }
-          var that = this;
-          that.storyCollection.fetch({
-            success: function(data){
-              var newStoriesListView = new StoryListView({
+      success: function(data) {
+        this.currentUser = this.getCurrentUser(data);
+
+        var templateNumber;
+        if (this.currentUser.attributes.id == user_id) {
+          templateNumber = 1;
+        } else {
+          templateNumber = 2;
+        }
+
+        var storyCollection = this.storyCollection;
+        storyCollection.url = "/users/" + user_id + "/stories";
+        storyCollection.fetch({
+          success: function(data){
+            var newStoriesListView = new StoryListView({
               collection: data,
-              template_number: templateNumber  
-              })
-            }
-          });
-        }.bind(this)
+              template_number: templateNumber
+            })
+          }
+        });
+      }.bind(this)
     });
   },
 
   createAndRenderOtherUsersList: function(user_id){
     var otherUserCollection = this.otherUserCollection;
-    otherUserCollection.url = "/users/" + user_id + "/otherusers"
+    otherUserCollection.url = "/users/" + user_id + "/other_users";
     otherUserCollection.fetch({
       success: function(data){
         var newOtherUserListView = new OtherUsersListView({

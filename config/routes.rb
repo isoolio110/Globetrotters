@@ -9,13 +9,12 @@ Rails.application.routes.draw do
   delete "/sessions"    => "sessions#destroy", as: "logout"
 
   resources :mostpopulardestinations
-  resources :otherusers
 
   # /users/...
   resources :users do
     resources :locations
     resources :stories
-    resources :otherusers
+    resources :other_users
   end
 
 end

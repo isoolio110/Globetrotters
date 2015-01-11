@@ -2,13 +2,13 @@
   <div id="other-users-icons-list">
   <%% otherUsers.each(function(user){ %>
     <div class="other-user-main-div">
-      <div class="other-user-img"> 
+      <div class="other-user-img">
         <img src=<%%= user.get('image_url') %> class="other-user-img">
       </div>
       <div class="other-user-shaded-div">
       </div>
       <div class="other-user-username-div">
-        <a href="#profiles/<%%= user.get('other_user_id')%>"> <%%= user.get('username') %></a>
+        <a href="#profiles/<%%= user.get('id')%>"> <%%= user.get('username') %></a>
       </div>
     </div>
   <%% }) %>

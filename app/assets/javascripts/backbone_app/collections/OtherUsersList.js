@@ -1,10 +1,10 @@
 var OtherUsersList = Backbone.Collection.extend({
-  url: '/otherusers',
+  url: '/other_users',
   model: OtherUser,
 
   customFilter: function(filter) {
-  var results = this.where(filter);
-  return new OtherUsersList(results);
+    var results = this.where(filter);
+    return new OtherUsersList(results);
   }
 
 });
