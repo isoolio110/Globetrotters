@@ -16,6 +16,7 @@ var LocationShowView = Backbone.View.extend({
     $('#profile-pg-travel-agenda-container').hide();
     $('#profile-pg-stories-container').hide();
     $('#profile-pg-other-users-container').hide();
+    $('#agenda-detail-container').show();    
     this.$el.html(this.template(this.model.toJSON()));
     $('#agenda-detail-container').html(this.$el);
   },
