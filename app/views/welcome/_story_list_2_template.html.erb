@@ -3,16 +3,16 @@
   <div id="profile-stories-list-non-current-user">
     <%% stories.each(function(story){ %>
     <div class="story-list-item">
-        <div id="story-title">
+        <div class="story-list-item-title">
           <%%= story.get('title') %>
         </div>
-        <div id="story-location">
+        <div class="story-list-item-location">
           where: <%%= story.get('location') %>
         </div>
-        <div id="story-description">
+        <div class="story-list-item-description">
           <%%= story.get('description') %>
         </div>  
-      </div>    
+      </div>   
     <%% }) %>
   </div>
 </div>

@@ -330,16 +330,28 @@ animation-delay: 2.2s;
   margin: 10px;
 }
 
+
+
 .travel-agenda-item-title {
   color: #2496CC;
   font-size: 1.5em;
 }
 
-.travel-agenda-item-title:hover {
+.travel-agenda-item-title a {
   color: #2496CC;
-  font-size: 1.5em;
+  font-size: 1em;
+  border-bottom: 2px solid;
+  -webkit-transition: color 0.1s ease-in;
+  -moz-transition: color 0.1s ease-in;
+  -o-transition: color 0.1s ease-in;
+  -ms-transition: color 0.1s ease-in;
+  transition: color 0.1s ease-in;  
 }
 
+.travel-agenda-item-title a:hover {
+  color: #66D8C9;
+  border-bottom: none;
+}
 
 #profile-stories-div {
   background-color: #8B9199;
@@ -394,20 +406,26 @@ animation-delay: 2.2s;
   padding: 5px;
 }
 
-.story-list-item a {
-  color:#2E2E2E;
-}
-
-#story-title {
+.story-list-item-title {
   font-size: 1.7em;
-  color: #26AD90;  
+  color: #26AD90;   
 }
 
-#story-description {
+.story-list-item-title a {
+  color: #26AD90;  
+  border-bottom: 2px solid;  
+}
+
+.story-list-item-title a:hover {
+  color: #72D85F;  
+  border-bottom: none;
+}
+
+.story-list-item-description {
   font-size: 1em;
 }
 
-#profile-stories-list-non-current-user{
+.profile-stories-list-non-current-user{
   width: 482px;  
 }
 

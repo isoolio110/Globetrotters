@@ -13,13 +13,13 @@
   <div id="profile-stories-list">
     <%% stories.each(function(story){ %>
     <div class="story-list-item">
-      <div>
-        <a href="#users/<%%= story.get('user_id') %>/stories/<%%= story.get('id') %>" id="story-title"><%%= story.get('title') %></a>
+      <div class="story-list-item-title">
+        <a href="#users/<%%= story.get('user_id') %>/stories/<%%= story.get('id') %>"><%%= story.get('title') %></a>
       </div>
-      <div id="story-location">
+      <div class="story-list-item-location">
         where: <%%= story.get('location') %>
       </div>
-      <div id="story-description">
+      <div class="story-list-item-description">
         <%%= story.get('description') %>
       </div>
     </div>

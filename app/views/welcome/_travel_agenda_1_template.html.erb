@@ -9,10 +9,15 @@
   <% end %>
   <%% locations.each(function(location){ %>
     <div class="travel-agenda-item">
-      <a href="#users/<%%= location.get('user_id')%>/locations/<%%= location.get('id') %>" class="travel-agenda-item-title">
-        <%%= location.get('place') %></a><br>
-      <p>Planned date: <%%= location.get('planned_date') %></p>
-      <p>Visited date: <%%= location.get('visited_date') %></p>
+      <div class="travel-agenda-item-title">
+        <a href="#users/<%%= location.get('user_id')%>/locations/<%%= location.get('id') %>"><%%= location.get('place') %></a>
+      </div>
+      <div class="travel-agenda-item-planned-date">
+        <p>Planned date: <%%= location.get('planned_date') %></p>
+      </div>
+      <div class="travel-agenda-item-visited-date">      
+        <p>Visited date: <%%= location.get('visited_date') %></p>
+      </div>
     </div>
   <%% }) %>
 </div>
