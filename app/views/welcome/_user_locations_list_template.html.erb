@@ -4,11 +4,9 @@
     <p class="add-destinations-txt">This should be your wish list of places to go. Explore the map to find interesting places.</p>
   </div>
 
-  <form class="create">
-    <input id="autocomplete" name="location" placeholder="Enter a country" onFocus="geolocate()" type="text"></input>
-  </form>
+  <input id="autocomplete" name="location" placeholder="Enter a country" onFocus="geolocate()" type="text">
 
-  <ul id="userlocations-list" class="userlocations-list">
+  <ul id="userlocations-list">
     <%% locations.each(function(location){ %>
       <li class="add-destinations-txt"><%%= location.get('place') %>
       </li>

@@ -1,7 +1,5 @@
 var LocationListView = Backbone.View.extend({
 
-  className: 'userlocations-list',
-
   template: _.template($('#user-location-list-template').html()),
 
   // set up a listener
@@ -14,18 +12,21 @@ var LocationListView = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template({ locations: this.collection }));
     $('#user-locations-container').html(this.$el);
+    this.delegateEvents();
   },
 
   events: {
-    'submit form': 'onSubmit',
+    'keypress #autocomplete': 'addLocation',
     'click #remove': 'onRemove'
   },
 
   // the onSubmit function states that when the event occurs:
-  onSubmit: function(e){
-    e.preventDefault();
-    var new_location = this.$('[name="location"]').val();
-    this.collection.create({ place: new_location });
+  addLocation: function(e){
+    var code = e.keyCode;
+    if (code == 13) {
+      var new_location = this.$('[name="location"]').val();
+      this.collection.create({ place: new_location });
+    }
   },
 
   onRemove: function(e) {

@@ -1,4 +1,4 @@
-var router;
+var MyAppRouter;
 
 $(function(){
   $('#landing-pg-imgs').cycle({

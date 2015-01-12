@@ -14,10 +14,6 @@ var TravelAgendaListView = Backbone.View.extend({
     this.render();
   },
 
-  // events: {
-  //   'click #add-destination-link': 'backToMainPage'
-  // },
-
   render: function(){
     var renderedHTML = this.template({
       locations: this.collection,
@@ -26,10 +22,5 @@ var TravelAgendaListView = Backbone.View.extend({
     this.$el.html(renderedHTML);
     $('#profile-pg-travel-agenda-container').html(this.$el);
   }
-
-  // backToMainPage: function(e) {
-  //   e.preventDefault();
-  //   MyAppRouter.navigate("locations/" + this.user_id, {trigger: true});
-  // }
 
 });
