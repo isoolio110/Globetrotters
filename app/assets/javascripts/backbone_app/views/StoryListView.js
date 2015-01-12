@@ -1,6 +1,9 @@
 var StoryListView = Backbone.View.extend({
-  className: 'stories-list',
+
+  el: '#profile-pg-stories-container',
+
   template1: _.template($('#story-list-1-template').html()),
+
   template2: _.template($('#story-list-2-template').html()),
 
   initialize: function(options){
@@ -12,20 +15,23 @@ var StoryListView = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template({ stories: this.collection }));
-    $('#profile-pg-stories-container').html(this.$el).show();
   },
 
   events: {
-    'submit form': 'onSubmit'
+    'submit #create-story-form': 'createStory'
   },
 
-  onSubmit: function(e){
+  createStory: function(e){
     e.preventDefault();
-      var title = this.$('[name="Title"]').val();
+    var title = this.$('[name="Title"]').val();
     var location = this.$('[name="Location"]').val();
     var description = this.$('[name="Description"]').val();
     var packlist = this.$('[name="PackList"]').val();
-    this.collection.create({title: title, location: location, description: description, packlist: packlist
+    this.collection.create({
+      title: title,
+      location: location,
+      description: description,
+      packlist: packlist
     });
   }
 

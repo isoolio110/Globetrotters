@@ -1,10 +1,11 @@
 <div id="profile-stories-div">
-    <p class="profile-section-header" id="stories-header"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Your Stories</p>
+  <p class="profile-section-header" id="stories-header"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Your Stories</p>
+
   <div id="story-form">
-    <form class="create">
+    <form id="create-story-form">
       <input type="text" name="Title" placeholder="Title of Your Trip" id="story-form-title">
       <input type="text" name="Location" placeholder="Location" id="story-form-location">
-      <textarea name="Description" id="story-form-description">Please provide a detailed description of your trip</textarea>
+      <textarea name="Description" id="story-form-description" placeholder="Please provide a detailed description of your trip"></textarea>
       <input type="submit" name="Submit">
     </form>
   </div>
@@ -21,9 +22,8 @@
       <div id="story-description">
         <%%= story.get('description') %>
       </div>
-    </div>  
+    </div>
     <%% }) %>
   </div>
+
 </div>
-
-
