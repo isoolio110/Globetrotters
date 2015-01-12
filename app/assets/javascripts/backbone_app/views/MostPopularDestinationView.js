@@ -18,9 +18,9 @@ var MostPopularDestinationView = Backbone.View.extend({
   topdest: function(data) {
       var topdest = []
       for (i = 0; i < data.models.length; i++) {
-      topdest.push(data.models[i].attributes);
-          }
-  return topdest;
+        topdest.push(data.models[i].attributes);
+      }
+      return topdest;
   },
 
   projectData: function(data){

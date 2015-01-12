@@ -7,9 +7,8 @@ $(function(){
     speed: 2500
   });
 
-  $('#map-canvas').hide();
-  $('#bar-chart').hide();
-  $('#user-locations-container').hide();
+  $('.page-container').hide();
+  $('#landing-pg-main-div').show();
 
   $('html,body').scrollTop(0);
 

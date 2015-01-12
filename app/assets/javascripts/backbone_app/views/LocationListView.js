@@ -1,7 +1,7 @@
 var LocationListView = Backbone.View.extend({
-  
+
   className: 'userlocations-list',
-  
+
   template: _.template($('#user-location-list-template').html()),
 
   // set up a listener
@@ -12,16 +12,8 @@ var LocationListView = Backbone.View.extend({
 
   // render means to populate the template with information from this collection
   render: function(){
-    $("#landing-pg-main-div").hide();
-    $('#profile-pg-profile-pic-container').hide();
-    $('#profile-pg-travel-agenda-container').hide();
-    $('#profile-pg-stories-container').hide();
-    $('#profile-pg-other-users-container').hide();
-    $('#profile-pg-profile-link-container').hide();
-    $('#map-canvas').show();
-    $('#bar-chart').show();
     this.$el.html(this.template({ locations: this.collection }));
-    $('#user-locations-container').html(this.$el).show();
+    $('#user-locations-container').html(this.$el);
   },
 
   events: {
@@ -34,7 +26,7 @@ var LocationListView = Backbone.View.extend({
     e.preventDefault();
     var new_location = this.$('[name="location"]').val();
     this.collection.create({ place: new_location });
-  },  
+  },
 
   onRemove: function(e) {
     e.preventDefault();

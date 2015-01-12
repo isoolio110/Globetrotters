@@ -20,16 +20,29 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////
 
   location: function(user_id){
+    $(".page-container").hide();
+
     this.createAndRenderLocationList(parseInt(user_id));
     createAndRenderBarChart(this.topDestinationsCollection);
 
     function createAndRenderBarChart(topDestinationsCollection) {
       topDestinationsCollection.fetch({
         success: function(data) {
-          var newView = new MostPopularDestinationView({ collection: data });
+          this.mostPopoulationDestinationView = new MostPopularDestinationView({ collection: data });
+          $("#locations-page").show();
         }
       });
     }
+  },
+
+  createAndRenderLocationList: function(user_id) {
+    var locationCollection = this.locationCollection;
+    locationCollection.url = "/users/" + user_id + "/locations";
+    locationCollection.fetch({
+      success: function(data) {
+        this.newLocationListView = new LocationListView({collection: data});
+      }.bind(this)
+    });
   },
 
   ////////////////////////
@@ -37,59 +50,74 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////////
 
   profile: function(user_id){
-    var user_id = parseInt(user_id)
-    this.createAndRenderTravelAgendaList(user_id);
-    this.createAndRenderProfileLink();
-    this.createAndRenderUser(user_id);
-    this.createAndRenderStoriesList(user_id);
-    this.createAndRenderOtherUsersList(user_id);
+    $(".page-container").hide();
+    this.renderAllProfilePageViews(parseInt(user_id));
   },
 
-  createAndRenderTravelAgendaList: function(user_id) {
-    this.createAndRenderLocationList(parseInt(user_id))
-
-    var templateNumber;
-
-    this.usersCollection.fetch({
-      success: function(data) {
-        this.currentUser = this.getCurrentUser(data);
-
-        if (this.currentUser.attributes.id == user_id) {
-          templateNumber = 1;
-        } else {
-          templateNumber = 2;
-        }
-
-        var agendaView = new TravelAgendaListView({
-          collection: this.locationCollection,
-          user_id: user_id,
-          template_number: templateNumber
-        });
-
-      }.bind(this)
-    });
+  renderAllProfilePageViews: function(user_id){
+    this.createAndRenderProfileLink();
+    this.createAndRenderUserAvatar(user_id);
+    this.createAndRenderTravelAgendaList(user_id);
+    this.createAndRenderStoriesList(user_id);
+    this.createAndRenderOtherUsersList(user_id);
+    $('#profile-page').show();
   },
 
   createAndRenderProfileLink: function() {
     this.usersCollection.fetch({
       success: function(data) {
         this.currentUser = this.getCurrentUser(data);
-        this.profileLinkView = new ProfileLinkView({model: this.currentUser});
+        this.profileLinkView = new ProfileLinkView({ model: this.currentUser });
       }.bind(this)
     });
   },
 
-  createAndRenderUser: function(user_id){
-    var userCollection = this.usersCollection;
-    userCollection.url = "/users/" + user_id;
-    userCollection.fetch({
-      success: function(data){
-        var newUserView = new UsersListView({
-          collection: data
+  createAndRenderUserAvatar: function(user_id){
+    var userModel = new User();
+    userModel.url = "/users/" + user_id;
+
+    userModel.fetch({
+      success: function(user){
+        this.profilePictureView = new ProfilePictureView({ model: user });
+      }.bind(this)
+    });
+  },
+
+  createAndRenderTravelAgendaList: function(user_id) {
+
+    this.usersCollection.fetch({
+      success: function(data) {
+        this.currentUser = this.getCurrentUser(data);
+
+        var templateNumber;
+        if (this.currentUser.attributes.id == user_id) {
+          templateNumber = 1;
+        } else {
+          templateNumber = 2;
+        }
+
+        this.createAndRenderTravelAgendaListView(user_id, templateNumber);
+
+      }.bind(this)
+    });
+  },
+
+  createAndRenderTravelAgendaListView: function(user_id, templateNumber) {
+
+    var locationCollection = this.locationCollection;
+    locationCollection.url = "/users/" + user_id + "/locations";
+    locationCollection.fetch({
+      success: function(data) {
+        this.agendaListView = new TravelAgendaListView({
+          collection: this.locationCollection,
+          user_id: user_id,
+          template_number: templateNumber
         });
       }.bind(this)
-    })
+    });
+
   },
+
 
   createAndRenderStoriesList: function(user_id){
 
@@ -108,10 +136,10 @@ var AppRouter = Backbone.Router.extend({
         storyCollection.url = "/users/" + user_id + "/stories";
         storyCollection.fetch({
           success: function(data){
-            var newStoriesListView = new StoryListView({
+            this.storiesListView = new StoryListView({
               collection: data,
               template_number: templateNumber
-            })
+            });
           }
         });
       }.bind(this)
@@ -123,8 +151,7 @@ var AppRouter = Backbone.Router.extend({
     otherUserCollection.url = "/users/" + user_id + "/other_users";
     otherUserCollection.fetch({
       success: function(data){
-        var newOtherUserListView = new OtherUsersListView({
-          collection: data})
+        this.otherUserListView = new OtherUsersListView({ collection: data });
       }.bind(this)
     });
   },
@@ -134,6 +161,8 @@ var AppRouter = Backbone.Router.extend({
   ///////////////////////
 
   storyDetail: function(user_id, story_id){
+    $(".page-container").hide();
+
     var story = new Story({
       user_id: user_id,
       id: story_id
@@ -144,6 +173,7 @@ var AppRouter = Backbone.Router.extend({
     story.fetch({
       success: function(){
         var storyDetailView = new StoryDetailView({model: story});
+        $('#story-detail-page').show();
       }
     });
   },
@@ -153,6 +183,7 @@ var AppRouter = Backbone.Router.extend({
   ////////////////////////
 
   locationDetail: function(user_id, location_id) {
+    $('.page-container').hide();
 
     var location = new Location({
       user_id: user_id,
@@ -163,24 +194,15 @@ var AppRouter = Backbone.Router.extend({
 
     location.fetch({
       success: function(){
-        this.locationShowView = new LocationShowView({model: location});
-      }
+        this.locationShowView = new LocationShowView({ model: location });
+        $('#agenda-detail-page').show();
+      }.bind(this)
     });
   },
 
   //////////////////
   // SHARED STUFF //
   //////////////////
-
-  createAndRenderLocationList: function(user_id) {
-    var locationCollection = this.locationCollection;
-    locationCollection.url = "/users/" + user_id + "/locations";
-    locationCollection.fetch({
-      success: function(data) {
-        var newLocationListView = new LocationListView({collection: data});
-      }.bind(this)
-    });
-  },
 
   getCurrentUser: function(userCollection) {
     return userCollection.findWhere({current_user: 1});

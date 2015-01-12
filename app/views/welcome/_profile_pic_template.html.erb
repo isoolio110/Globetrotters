@@ -1,8 +1,6 @@
-<%% users.each(function(user){ %>
-  <div id="profile-pic-div">
-    <img src=<%%= user.get('image_url') %>>
-  </div>
-  <div id="profile-pic-username">
-    <%%= user.get('username') %> 
-  </div>
-<%% }) %>
+<div id="profile-pic-div">
+  <img src=<%%= this.model.get('image_url') %>>
+</div>
+<div id="profile-pic-username">
+  <%%= this.model.get('username') %>
+</div>

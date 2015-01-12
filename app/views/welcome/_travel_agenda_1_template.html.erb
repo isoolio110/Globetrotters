@@ -1,17 +1,18 @@
 <div id="profile-background-img">
-    <img src="assets/profile_backgrounds/img3.jpg"> 
+    <img src="assets/profile_backgrounds/img3.jpg">
 </div>
 
 <div id="profile-travel-agenda-div">
   <p class="profile-section-header" id="travel-agenda-header"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Your Travel Agenda</p>
-  <a id="add-destination-link">Add Destinations</a>
-  <br>
-    <%% locations.each(function(location){ %>
-      <div class="travel-agenda-item"> 
-        <a href="#users/<%%= location.get('user_id')%>/locations/<%%= location.get('id') %>" class="travel-agenda-item-title">
-          <%%= location.get('place') %></a><br>
-        <p>Planned date: <%%= location.get('planned_date') %></p>
-        <p>Visited date: <%%= location.get('visited_date') %></p>
-      </div>
-    <%% }) %>
+  <% if current_user %>
+    <a href="#locations/<%= current_user.id %>"id="add-destination-link">Add Destinations</a><br>
+  <% end %>
+  <%% locations.each(function(location){ %>
+    <div class="travel-agenda-item">
+      <a href="#users/<%%= location.get('user_id')%>/locations/<%%= location.get('id') %>" class="travel-agenda-item-title">
+        <%%= location.get('place') %></a><br>
+      <p>Planned date: <%%= location.get('planned_date') %></p>
+      <p>Visited date: <%%= location.get('visited_date') %></p>
+    </div>
+  <%% }) %>
 </div>

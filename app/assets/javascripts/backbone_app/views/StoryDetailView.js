@@ -4,19 +4,11 @@ var StoryDetailView = Backbone.View.extend({
 
   template: _.template($('#story-detail-template').html()),
 
-  initialize: function(){
+  initialize: function() {
     this.render();
   },
 
   render: function() {
-    $("#landing-pg-main-div").hide(); 
-    $('#map-canvas').hide();
-    $('#profile-pg-profile-link-container').hide();
-    $('#profile-pg-profile-pic-container').hide();
-    $('#profile-pg-travel-agenda-container').hide();
-    $('#profile-pg-stories-container').hide();
-    $('#profile-pg-other-users-container').hide();
-    $('#story-detail-container').show();
     this.$el.html(this.template(this.model.toJSON()));
     $('#story-detail-container').html(this.$el);
   },
