@@ -219,8 +219,8 @@ a, a:hover {
   float: right;
   position: fixed;
   z-index:4;
-  right: 100px;
   top: 10px;
+  right: 200px;
 }
 
 #profile-pic-nav {
@@ -331,6 +331,7 @@ a, a:hover {
   background-color: white;
   color: #2E2E2E;
   padding: 5px;
+  margin-top: 10px;
 }
 
 .story-list-item-title {
