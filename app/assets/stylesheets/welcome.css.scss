@@ -411,10 +411,32 @@ a, a:hover {
   float:left;
 }
 
-#story-detail-container {
-  margin-top: 60px;
-}
+/********** Agenda Edit Page ************/
 
 #agenda-detail-container {
  margin-top: 60px; 
 }
+
+.back-to-profile-btn {
+  width: 130px; 
+  color: white;
+  background: none;
+  font-size: 1.2em;
+  border: transparent;
+  margin-bottom: 40px;
+}
+
+.edit-form {
+  margin-left: 12px;
+}
+
+.edit-form-field {
+  margin-bottom: 10px;
+}
+
+/********** Story Edit Page ************/
+
+#story-detail-container {
+  margin-top: 60px;
+}
+

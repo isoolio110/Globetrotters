@@ -19,9 +19,9 @@ var StoryDetailView = Backbone.View.extend({
   },
 
   events: {
-    'click #done': 'onDone',
-    'click #remove': 'onRemove',
-    'click #save': 'onSave'
+    'click .back-to-profile-btn': 'onDone',
+    'click .delete-btn': 'onDelete',
+    'click .save-btn': 'onSave'
   },
 
   onDone: function(evt) {

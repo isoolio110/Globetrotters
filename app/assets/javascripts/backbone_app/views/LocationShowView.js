@@ -14,9 +14,9 @@ var LocationShowView = Backbone.View.extend({
   },
 
   events: {
-    'click #done': 'onDone',
-    'click #remove': 'onRemove',
-    'click #save': 'onSave'
+    'click .back-to-profile-btn': 'onDone',
+    'click .delete-btn': 'onDelete',
+    'click .save-btn': 'onSave'
   },
 
   done: function() {
@@ -36,7 +36,7 @@ var LocationShowView = Backbone.View.extend({
     this.done();
   },
 
-  onRemove: function(evt) {
+  onDelete: function(evt) {
     evt.preventDefault();
     if (window.confirm('Are you sure you want to delete this trip?')) {
       this.model.destroy();

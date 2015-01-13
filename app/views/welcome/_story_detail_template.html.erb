@@ -1,21 +1,23 @@
 <script type="template" id="story-detail-template">
   <div class="header">
-    <button class="done" id="done">Back to Profile</button>
+    <button class="done back-to-profile-btn">Back to Profile</button>
   </div>
-  <fieldset>
-    <label for="story-title">Title</label>
-    <input id="story-title" type="text" name="title" value="<%%= title %>">
-  </fieldset>
-  <fieldset>
-    <label for="story-location">Location</label>
-    <input id="story-location" type="text" name="location" value="<%%= location %>">
-  </fieldset>
-  <fieldset>
-    <label for="story-description">Description</label>
-    <input id="story-description" type="text" name="description" value="<%%= description %>">
-  </fieldset>
-  <fieldset>
-    <button id="save">Save</button>
-    <button id="remove">Remove</button>
-  </fieldset>
+  <div class="edit-form">  
+    <fieldset class="edit-form-field">
+      <label for="story-title">Title</label>
+      <input id="story-title" type="text" name="title" value="<%%= title %>">
+    </fieldset>
+    <fieldset class="edit-form-field">
+      <label for="story-location">Location</label>
+      <input id="story-location" type="text" name="location" value="<%%= location %>">
+    </fieldset>
+    <fieldset class="edit-form-field">
+      <label for="story-description">Description</label>
+      <input id="story-description" type="text" name="description" value="<%%= description %>">
+    </fieldset>
+    <fieldset>
+      <button class="btn btn-default save-btn">Save</button>
+      <button class="btn btn-default delete-btn">Delete</button>
+    </fieldset>
+  </div>
 </script>
