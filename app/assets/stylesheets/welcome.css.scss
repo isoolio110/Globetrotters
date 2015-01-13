@@ -305,8 +305,10 @@ a, a:hover {
   border-bottom: none;
 }
 
-#profile-pg-stories-container {
-
+#submit-story-btn {
+ margin-top: 10px;
+ background: #2C7D87;
+ border: none;
 }
 
 #stories-main-div{
@@ -315,7 +317,6 @@ a, a:hover {
   color: white;
   padding: 30px; 
 }
-
 
 #story-form-description {
   height: 100px;
