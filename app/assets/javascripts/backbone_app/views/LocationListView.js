@@ -1,5 +1,7 @@
 var LocationListView = Backbone.View.extend({
 
+  el: '#user-locations-container',
+
   template: _.template($('#user-location-list-template').html()),
 
   // set up a listener
@@ -11,7 +13,6 @@ var LocationListView = Backbone.View.extend({
   // render means to populate the template with information from this collection
   render: function(){
     this.$el.html(this.template({ locations: this.collection }));
-    $('#user-locations-container').html(this.$el);
     this.delegateEvents();
   },
 
@@ -20,12 +21,17 @@ var LocationListView = Backbone.View.extend({
     'click #remove': 'onRemove'
   },
 
+  toTitleCase: function(str){
+    return str.replace(/\w*\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  },
+
   // the onSubmit function states that when the event occurs:
   addLocation: function(e){
     var code = e.keyCode;
     if (code == 13) {
       var new_location = this.$('[name="location"]').val();
-      this.collection.create({ place: new_location });
+      var new_location_capitalized = this.toTitleCase(new_location);
+      this.collection.create({ place: new_location_capitalized });
     }
   },
 

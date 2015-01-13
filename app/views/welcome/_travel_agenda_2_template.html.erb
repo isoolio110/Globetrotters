@@ -1,20 +1,24 @@
-<div id="profile-background-img">
-    <img src="assets/profile_backgrounds/img3.jpg"> 
-</div>
+<script type="template" id="travel-agenda-list-2-template">
 
-<div id="profile-travel-agenda-div">
-  <p class="profile-section-header" id="travel-agenda-header"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Your Travel Agenda</p>
-    <%% locations.each(function(location){ %>
-      <div class="travel-agenda-item"> 
-        <div class="travel-agenda-item-title">
-          <p><%%= location.get('place') %></p>
+  <div id="profile-background-img">
+      <img src="assets/profile_backgrounds/img3.jpg"> 
+  </div>
+
+  <div id="profile-travel-agenda-div">
+    <p class="profile-section-header" id="travel-agenda-header"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Your Travel Agenda</p>
+      <%% locations.each(function(location){ %>
+        <div class="travel-agenda-item"> 
+          <div class="travel-agenda-item-title">
+            <p><%%= location.get('place') %></p>
+          </div>
+          <div class="travel-agenda-item-planned-date">  
+            <p>Planned date: <%%= location.get('planned_date') %></p>
+          </div>
+          <div class="travel-agenda-item-visited-date"> 
+            <p>Visited date: <%%= location.get('visited_date') %></p>
+          </div> 
         </div>
-        <div class="travel-agenda-item-planned-date">  
-          <p>Planned date: <%%= location.get('planned_date') %></p>
-        </div>
-        <div class="travel-agenda-item-visited-date"> 
-          <p>Visited date: <%%= location.get('visited_date') %></p>
-        </div> 
-      </div>
-    <%% }) %>
-</div>
+      <%% }) %>
+  </div>
+  
+</script>

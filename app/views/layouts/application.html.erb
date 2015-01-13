@@ -2,18 +2,33 @@
 <html>
 <head>
   <title>Globetrotters</title>
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
-  <!-- Render on location list page: form  -->
-  <script type="template" id="user-location-list-template">
-      <%= render 'welcome/user_locations_list_template' %>
-  </script>
- <!-- Render on location list page: bar chart  -->
-  <script type="template" id="most-popular-template">
-      <%= render 'welcome/most_popular_destination_template' %>
-  </script>
-  <!--Render on location list page: google map -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+
+  <!-- Render on location list page: form  -->
+  <%= render 'welcome/user_locations_list_template' %>
+  <!-- Render on location list page: bar chart  -->
+  <%= render 'welcome/most_popular_destination_template' %>
+  <!-- Render on profile page: travel agenda  -->
+  <%= render 'welcome/travel_agenda_1_template' %>
+  <%= render 'welcome/travel_agenda_2_template' %>
+  <!-- Render on profile page: list of travel agenda  -->
+  <%= render 'welcome/profile_link_template' %>
+  <!-- Render on profile page: list of stories  -->
+  <%= render 'welcome/story_list_1_template' %>
+  <%= render 'welcome/story_list_2_template' %>
+  <!-- Render on profile page: other users  -->
+  <%= render 'welcome/other_users_template' %>
+  <!-- Render on profile page: user profile pic  -->
+  <%= render 'welcome/profile_pic_template' %>
+  <!-- Render on story page: story edit form  -->
+  <%= render 'welcome/story_detail_template' %>
+  <!-- Render on agenda page: agenda edit form  -->
+  <%= render 'welcome/agenda_detail_template' %>
+  <!--Render on location list page: google map -->
+  
   <script>
     var map;
     function initialize() {
@@ -21,11 +36,11 @@
         zoom: 2,
         center: new google.maps.LatLng(0, 0)
       };
-      map = new google.maps.Map(document.getElementById('map-canvas'),
-          mapOptions);
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
+
   <!-- Add on location list page: google place autocomplete -->
   <script>
   var placeSearch, autocomplete;
@@ -35,7 +50,7 @@
     autocomplete = new google.maps.places.Autocomplete(
         /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
         { types: ['geocode'] });
-  }
+    }
   function geolocate() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -50,63 +65,17 @@
     }
   }
   </script>
-  <!-- Render on profile page: travel agenda  -->
-  <script type="template" id="travel-agenda-list-1-template">
-    <%= render 'welcome/travel_agenda_1_template' %>
-  </script>
-  <script type="template" id="travel-agenda-list-2-template">
-      <%= render 'welcome/travel_agenda_2_template' %>
-  </script>
-  <!-- Render on profile page: list of travel agenda  -->
-  <script type="template" id="profile-link-template">
-      <%= render 'welcome/profile_link_template' %>
-  </script>
-<!-- Render on profile page: list of stories  -->
-  <script type="template" id="story-list-1-template">
-      <%= render 'welcome/story_list_1_template' %>
-  </script>
-  <script type="template" id="story-list-2-template">
-    <%= render 'welcome/story_list_2_template' %>
-  </script>
-<!-- Render on profile page: other users  -->
-  <script type="template" id="other-users-list-template">
-      <%= render 'welcome/other_users_template' %>
-  </script>
-<!-- Render on profile page: user profile pic  -->
-  <script type="template" id="profile-picture-template">
-      <%= render 'welcome/profile_pic_template' %>
-  </script>
-<!-- Render on story page: story edit form  -->
-  <script type="template" id="story-detail-template">
-      <%= render 'welcome/story_detail_template' %>
-  </script>
-<!-- Render on agenda page: agenda edit form  -->
-<script type="template" id="agenda-detail-template">
-    <%= render 'welcome/agenda_detail_template' %>
-</script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <script src="http://malsup.github.com/jquery.cycle2.js"></script>
   <%= csrf_meta_tags %>
 </head>
+
 <body onload="initialize()">
-  <nav>
-    <div class="navbar navbar-default" >
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">THE GLOBETROTTERS</a>
-        </div>
-        <div>
-          <ul class="nav navbar-nav navbar-right">
-            <%= render partial: current_user ? "/shared/user_nav" : "/shared/non_user_nav" %>
-          </ul>
-      </div>
-     </div>
-    </div>
-   </nav>
-<%= yield %>
+    <%= render "navbar_template" %>
+    <%= yield %>
 
 </body>
 </html>

@@ -1,29 +1,30 @@
-<div id="profile-stories-div">
-  <p class="profile-section-header" id="stories-header"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Your Stories</p>
+<script type="template" id="story-list-1-template">
+  <div class="col-xs-12" id="stories-main-div">
+    <p class="profile-section-header" id="stories-header"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Your Stories</p>
 
-  <div id="story-form">
-    <form id="create-story-form">
-      <input type="text" name="Title" placeholder="Title of Your Trip" id="story-form-title">
-      <input type="text" name="Location" placeholder="Location" id="story-form-location">
-      <textarea name="Description" id="story-form-description" placeholder="Please provide a detailed description of your trip"></textarea>
-      <input type="submit" name="Submit">
-    </form>
-  </div>
-
-  <div id="profile-stories-list">
-    <%% stories.each(function(story){ %>
-    <div class="story-list-item">
-      <div class="story-list-item-title">
-        <a href="#users/<%%= story.get('user_id') %>/stories/<%%= story.get('id') %>"><%%= story.get('title') %></a>
-      </div>
-      <div class="story-list-item-location">
-        where: <%%= story.get('location') %>
-      </div>
-      <div class="story-list-item-description">
-        <%%= story.get('description') %>
-      </div>
+    <div id="story-form">
+      <form id="create-story-form">
+        <input type="text" name="Title" placeholder="Title of Your Trip" class="col-xs-12" id="story-form-title">
+        <input type="text" name="Location" placeholder="Location" class="col-xs-12" id="story-form-location">
+        <textarea name="Description" class="col-xs-12" id="story-form-description"></textarea>
+        <input type="submit" name="submit" value="Post">
+      </form>
     </div>
-    <%% }) %>
-  </div>
 
-</div>
+    <div id="profile-stories-list">
+      <%% stories.each(function(story){ %>
+      <div class="story-list-item">
+        <div class="story-list-item-title">
+          <a href="#users/<%%= story.get('user_id') %>/stories/<%%= story.get('id') %>"><%%= story.get('title') %></a>
+        </div>
+        <div class="story-list-item-location">
+          where: <%%= story.get('location') %>
+        </div>
+        <div class="story-list-item-description">
+          <%%= story.get('description') %>
+        </div>
+      </div>
+      <%% }) %>
+    </div>
+  </div>  
+</script>

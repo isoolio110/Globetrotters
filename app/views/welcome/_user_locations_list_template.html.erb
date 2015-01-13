@@ -1,18 +1,18 @@
-<div id="add-destinations" >
-  <div>
-    <h3 id="add-destinations-header">Step 1: Add Destinations </h3>
-    <p class="add-destinations-txt">This should be your wish list of places to go. Explore the map to find interesting places.</p>
-  </div>
+<script type="template" id="user-location-list-template">
 
-  <input id="autocomplete" name="location" placeholder="Enter a country" onFocus="geolocate()" type="text">
+  <h3 id="add-destinations-header">Step 1: Add Destinations</h3>
 
-  <ul id="userlocations-list">
-    <%% locations.each(function(location){ %>
-      <li class="add-destinations-txt"><%%= location.get('place') %>
-      </li>
-    <%% }) %>
-  </ul>
+  <p class="add-destinations-txt">This should be your wish list of places to go. Explore the map to find interesting places.</p>
+
+  <input id="autocomplete" name="location" placeholder=" Type a Country + Hit Enter to Add " onFocus="geolocate()" type="text">
+
+  <ol id="userlocations-list">
+  <%% locations.each(function(location){ %>
+    <li class="add-destinations-txt"><%%= location.get('place') %></li>
+  <%% }) %>
+  </ol>
+
   <% if current_user %>
-    <a href="#profiles/<%= current_user.id %>" id="next-btn">Next</a>
+    <a href="#profiles/<%= current_user.id %>" id="next-btn">DONE WITH LIST</a>
   <% end %>
-</div>
+</script>

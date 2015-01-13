@@ -1,0 +1,17 @@
+<nav>
+  <div class="navbar navbar-default" >
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 navbar-header">
+      <a class="navbar-brand" href="/">THE GLOBETROTTERS</a>
+    </div>
+    <div>
+      <ul class="col-xs-6 col-sm-6 col-md-4 col-lg-2 nav navbar-nav navbar-right">
+        <% if current_user %>
+          <li><%= button_to "Logout", logout_path, method: :delete, :class => "btn login-btn" %></li>
+        <% else %>
+          <li><%= button_to "Login", login_path, method: :get, :class => "btn login-btn" %></li>
+          <li><%= button_to "Signup", new_user_path, method: :get, :class => "btn login-btn" %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav> 

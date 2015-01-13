@@ -1,6 +1,6 @@
 var TravelAgendaListView = Backbone.View.extend({
 
-  className: 'travel-agenda-list',
+  el: '#profile-pg-travel-agenda-container',
 
   template1: _.template($('#travel-agenda-list-1-template').html()),
 
@@ -20,7 +20,7 @@ var TravelAgendaListView = Backbone.View.extend({
       user_id: this.user_id
     });
     this.$el.html(renderedHTML);
-    $('#profile-pg-travel-agenda-container').html(this.$el);
+
   }
 
 });

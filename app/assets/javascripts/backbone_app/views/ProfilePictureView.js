@@ -1,6 +1,6 @@
 var ProfilePictureView = Backbone.View.extend({
 
-  className: 'profile-pic',
+  el: '#profile-pg-profile-pic-container',
   template: _.template($('#profile-picture-template').html()),
 
   initialize: function(){
@@ -10,7 +10,6 @@ var ProfilePictureView = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template(this.model.toJSON()));
-    $('#profile-pg-profile-pic-container').html(this.$el);
   }
 
 });

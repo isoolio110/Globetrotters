@@ -1,6 +1,7 @@
 var OtherUsersListView = Backbone.View.extend({
-  tagName: 'div',
-  className: 'other-users-list',
+  
+  el: '#profile-pg-other-users-container',
+  
   template: _.template($('#other-users-list-template').html()),
 
   initialize: function(){
@@ -10,7 +11,6 @@ var OtherUsersListView = Backbone.View.extend({
 
   render: function(){
     this.$el.html(this.template({ otherUsers: this.collection }));
-    $('#profile-pg-other-users-container').html(this.$el).show();
   }
   
 });

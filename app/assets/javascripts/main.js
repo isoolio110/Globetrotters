@@ -3,8 +3,8 @@ var MyAppRouter;
 $(function(){
   $('#landing-pg-imgs').cycle({
     fx: 'fade',
-    timeout: 2500,
-    speed: 2500
+    timeout: 2000,
+    speed: 1500
   });
 
   $('.page-container').hide();

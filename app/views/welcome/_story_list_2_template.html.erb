@@ -1,18 +1,22 @@
-<div id="profile-stories-div">
-  <p class="profile-section-header" id="stories-header"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Your Stories</p>
-  <div id="profile-stories-list-non-current-user">
-    <%% stories.each(function(story){ %>
-    <div class="story-list-item">
-        <div class="story-list-item-title">
-          <%%= story.get('title') %>
-        </div>
-        <div class="story-list-item-location">
-          where: <%%= story.get('location') %>
-        </div>
-        <div class="story-list-item-description">
-          <%%= story.get('description') %>
-        </div>  
-      </div>   
-    <%% }) %>
-  </div>
-</div>
+<script type="template" id="story-list-2-template">
+  <div class="col-xs-12" id="stories-main-div">
+    <div id="profile-stories-div">
+      <p class="profile-section-header" id="stories-header"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Your Stories</p>
+      <div id="profile-stories-list-non-current-user">
+        <%% stories.each(function(story){ %>
+        <div class="story-list-item">
+            <div class="story-list-item-title">
+              <%%= story.get('title') %>
+            </div>
+            <div class="story-list-item-location">
+              where: <%%= story.get('location') %>
+            </div>
+            <div class="story-list-item-description">
+              <%%= story.get('description') %>
+            </div>  
+          </div>   
+        <%% }) %>
+      </div>
+    </div>
+  </div>  
+</script>
