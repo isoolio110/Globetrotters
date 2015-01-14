@@ -31,7 +31,9 @@ var LocationListView = Backbone.View.extend({
     if (code == 13) {
       var new_location = this.$('[name="location"]').val();
       var new_location_capitalized = this.toTitleCase(new_location);
-      this.collection.create({ place: new_location_capitalized });
+      this.collection.create({ 
+        place: new_location_capitalized 
+      }).bind(this);
     }
   },
 
