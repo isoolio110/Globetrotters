@@ -18,7 +18,7 @@ var StoryListView = Backbone.View.extend({
   },
 
   events: {
-    'click #submit': 'createStory'
+    'click #submit-story-btn': 'createStory'
   },
 
   createStory: function(e){

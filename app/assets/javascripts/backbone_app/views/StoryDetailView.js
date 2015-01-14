@@ -38,7 +38,7 @@ var StoryDetailView = Backbone.View.extend({
     return this;
   },
 
-  onRemove: function(evt) {
+  onDelete: function(evt) {
     evt.preventDefault();
     if (window.confirm('Are you sure you want to delete this story?')) {
       this.model.destroy();
