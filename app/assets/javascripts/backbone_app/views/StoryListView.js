@@ -23,16 +23,14 @@ var StoryListView = Backbone.View.extend({
 
   createStory: function(e){
     e.preventDefault();
-    var title = this.$('[name="Title"]').val();
-    var location = this.$('[name="Location"]').val();
-    var description = this.$('[name="Description"]').val();
-    var packlist = this.$('[name="PackList"]').val();
+    var title = this.$('[name="story-title"]').val();
+    var location = this.$('[name="story-location"]').val();
+    var description = this.$('[name="story-description"]').val();
     this.collection.create({
       title: title,
       location: location,
       description: description,
-      packlist: packlist
-    });
+    }).bind(this);
   }
 
 });

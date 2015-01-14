@@ -2,7 +2,7 @@
 
   <% if @errors %>
     <div class="form_errors">
-      <h3>Form <%= @errors.count == 1 ? "ERROR" : "ERRORS" %></h3>
+      <h3>Form <%= @errors.count == 1 ? "error" : "errors" %></h3>
       <ul>
         <% @errors.each do |error|  %>
         <li><%= error %></li>
