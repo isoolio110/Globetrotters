@@ -1,7 +1,8 @@
-# Notes
+***************************************
+Globetrotters
+***************************************
 
--- D3 does not show up on Digital Ocean
--- Do my routes make sense?
--- Go over Javascript bind
--- Split CSS?
--- JS file organization?
+Globetrotters is a web app for people who want to share stories about their travels. 
+
+Once the user has logged in, the user can add to his or her travel agenda.  After the travel agenda is set, the user can access his or her profile page. The profile page has three main parts. The first is a view of the user's travel agenda, the second is an area for the user to publish stories about his or her travels, and the third is a section that allows the user to see which other globetrotters have written stories about the places that the user wants to travel to. 
+

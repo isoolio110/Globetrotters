@@ -30,7 +30,7 @@ var StoryListView = Backbone.View.extend({
       title: title,
       location: location,
       description: description,
-    }).bind(this);
+    });
   }
 
 });
