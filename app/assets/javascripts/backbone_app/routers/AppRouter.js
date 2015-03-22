@@ -21,7 +21,6 @@ var AppRouter = Backbone.Router.extend({
 
   location: function(user_id){
     $(".page-container").hide();
-
     this.createAndRenderLocationList(parseInt(user_id));
     createAndRenderBarChart(this.topDestinationsCollection);
 

@@ -14,7 +14,7 @@ $(function(){
 
   MyAppRouter = new AppRouter();
 
-  Backbone.history.start({pushState: false});
+  Backbone.history.start();
 
   $.fn.serializeObject = function()
   {
